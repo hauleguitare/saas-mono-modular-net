@@ -1,5 +1,6 @@
 ﻿using System.Reflection;
-using WebApp.Common.Utils;
+using SharedKernel.Common.Attribute;
+using SharedKernel.Common.Struct;
 
 namespace WebApp.Common.Helper;
 
@@ -34,7 +35,7 @@ public static class ApiBoostrapHelper
 
         var injectableServices = types
             .Where(t => t.IsDefined(typeof(InjectableAttribute), true))
-            .Select(t => new ApiInjectableServiceObject()
+            .Select(t => new InjectableServiceObject()
             {
                 Implementation = t,
                 Interface = t.GetCustomAttribute<InjectableAttribute>()?.InterfaceType,
@@ -75,18 +76,7 @@ public static class ApiBoostrapHelper
             
             
             default:
-                throw new ArgumentException("Invalid lifetime", nameof(implType));
+                throw new ArgumentException("Invalid lifetime", nameof(lifetime));
         }
-    }
-
-    private struct ApiInjectableServiceObject
-    {
-        public Type? Interface { get; set; }
-        public Type? Implementation { get; set; }
-        public ServiceLifetime? Lifetime { get; set; }
-        
-        public ApiInjectableServiceObject(
-            
-            ) {}
     }
 }
