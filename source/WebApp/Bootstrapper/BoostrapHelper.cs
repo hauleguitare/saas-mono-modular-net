@@ -1,21 +1,45 @@
 ﻿using System.Reflection;
+using Infrastructure.DAL.Context;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
 using SharedKernel.Common.Attribute;
 using SharedKernel.Common.Struct;
 
-namespace WebApp.Common.Helper;
+namespace WebApp.Bootstrapper;
 
 public static class ApiBoostrapHelper
 {
-    public static void ConfigureServices(IServiceCollection services)
+    public static void ConfigureServices(IServiceCollection services, IConfiguration configuration, IWebHostEnvironment environment)
     {
         // Add services to the container.
         services.AddControllers();
+        
+        // Add Authorization Ccore
+        services.AddAuthorization();
+
+        services.AddIdentityApiEndpoints<IdentityUser>()
+            .AddEntityFrameworkStores<ApplicationDbContext>();
+        
         // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
         services.AddEndpointsApiExplorer();
         services.AddSwaggerGen();
         
         // Configure dependency injection
         ConfigureDependencyInjection(services);
+        
+        // Database
+        services.AddDbContext<ApplicationDbContext>(
+            opts =>
+            {
+                var connectionString = configuration.GetConnectionString("DefaultConnection");
+                opts.UseNpgsql(connectionString);
+
+                if (environment.IsDevelopment())
+                {
+                    opts.EnableSensitiveDataLogging();
+                    opts.EnableDetailedErrors();
+                }
+            });
     }
 
     public static void RegisterMiddlewares(WebApplication app)
@@ -26,6 +50,14 @@ public static class ApiBoostrapHelper
             app.UseSwagger();
             app.UseSwaggerUI();
         }
+        
+        // app.UseHttpsRedirection();
+
+        app.UseAuthorization();
+
+        app.MapIdentityApi<IdentityUser>();
+
+        app.MapControllers();
     }
 
     public static void ConfigureDependencyInjection(IServiceCollection services)
@@ -55,7 +87,6 @@ public static class ApiBoostrapHelper
                 lifetime: injectableService.Lifetime.Value);
         }
     }
-
 
     private static void AddBootstrapService(this IServiceCollection services, Type iType, Type implType,
         ServiceLifetime lifetime)

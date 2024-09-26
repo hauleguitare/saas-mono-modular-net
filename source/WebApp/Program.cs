@@ -1,24 +1,15 @@
-using WebApp.Common.Helper;
+using WebApp.Bootstrapper;
 
 var builder = WebApplication.CreateBuilder(args);
 
-
-
-ApiBoostrapHelper.ConfigureServices(builder.Services);
+// Configure services
+ApiBoostrapHelper.ConfigureServices(builder.Services, builder.Configuration, builder.Environment);
 
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
-if (app.Environment.IsDevelopment())
-{
-    app.UseSwagger();
-    app.UseSwaggerUI();
-}
+// Register middlewares
+ApiBoostrapHelper.RegisterMiddlewares(app);
 
-// app.UseHttpsRedirection();
-
-app.UseAuthorization();
-
-app.MapControllers();
-
+// App run
 app.Run();
+

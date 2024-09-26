@@ -19,11 +19,10 @@
     <ItemGroup>
       <Folder Include="Common\Exception\" />
       <Folder Include="Common\Utils\" />
-      <Folder Include="Domain\Services\" />
-      <Folder Include="Domain\Types\" />
     </ItemGroup>
 
     <ItemGroup>
+      <ProjectReference Include="..\Infrastructure.DAL\Infrastructure.DAL.csproj" />
       <ProjectReference Include="..\SharedKernel\SharedKernel.csproj" />
     </ItemGroup>
 
