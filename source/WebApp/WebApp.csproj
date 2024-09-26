@@ -17,4 +17,9 @@
       </Content>
     </ItemGroup>
 
+    <ItemGroup>
+      <Folder Include="Domain\Services\" />
+      <Folder Include="Domain\Types\" />
+    </ItemGroup>
+
 </Project>
