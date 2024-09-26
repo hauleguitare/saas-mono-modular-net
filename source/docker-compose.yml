@@ -1,6 +1,8 @@
-﻿services:
+version: '3.4'
+
+services:
   webapp:
-    image: webapp
+    image: ${DOCKER_REGISTRY-}webapp
     build:
       context: .
       dockerfile: WebApp/Dockerfile

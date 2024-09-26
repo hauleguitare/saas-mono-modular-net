@@ -1,16 +1,23 @@
-﻿Microsoft Visual Studio Solution File, Format Version 12.00
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebApp", "WebApp\WebApp.csproj", "{A7D517B7-7302-49B1-9560-7C6C853381D6}"
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.10.35027.167
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebApp", "WebApp\WebApp.csproj", "{A7D517B7-7302-49B1-9560-7C6C853381D6}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{1E919124-4A5D-4CE6-AAC1-B276E74B33AF}"
-	ProjectSection(SolutionItems) = preProject
-		docker-compose.yml = docker-compose.yml
-	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Core", "Core", "{1255D59F-9ACB-4090-8D43-2EC7C0840039}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SharedKernel", "SharedKernel\SharedKernel.csproj", "{37955D21-3E31-41E7-9048-6D39C542FEE3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SharedKernel", "SharedKernel\SharedKernel.csproj", "{37955D21-3E31-41E7-9048-6D39C542FEE3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Core", "Core\Core.csproj", "{802E7A43-C5D8-41F0-8209-C088F787D6B1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Core", "Core\Core.csproj", "{802E7A43-C5D8-41F0-8209-C088F787D6B1}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Infrastructure", "Infrastructure", "{23DC4EEF-2B7F-4BA3-8849-38D038C2BB3E}"
+EndProject
+Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{DA80630A-B2DD-4A85-9170-6E99E9521343}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "WebApp", "WebApp", "{52A816B3-17BE-44BD-A1D3-062319AB9212}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -30,9 +37,17 @@ Global
 		{802E7A43-C5D8-41F0-8209-C088F787D6B1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{802E7A43-C5D8-41F0-8209-C088F787D6B1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{802E7A43-C5D8-41F0-8209-C088F787D6B1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DA80630A-B2DD-4A85-9170-6E99E9521343}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DA80630A-B2DD-4A85-9170-6E99E9521343}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DA80630A-B2DD-4A85-9170-6E99E9521343}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DA80630A-B2DD-4A85-9170-6E99E9521343}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{37955D21-3E31-41E7-9048-6D39C542FEE3} = {1255D59F-9ACB-4090-8D43-2EC7C0840039}
 		{802E7A43-C5D8-41F0-8209-C088F787D6B1} = {1255D59F-9ACB-4090-8D43-2EC7C0840039}
+		{A7D517B7-7302-49B1-9560-7C6C853381D6} = {52A816B3-17BE-44BD-A1D3-062319AB9212}
 	EndGlobalSection
 EndGlobal
