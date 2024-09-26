@@ -17,4 +17,15 @@
       </Content>
     </ItemGroup>
 
+    <ItemGroup>
+      <Folder Include="Common\Exception\" />
+      <Folder Include="Common\Utils\" />
+      <Folder Include="Domain\Services\" />
+      <Folder Include="Domain\Types\" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\SharedKernel\SharedKernel.csproj" />
+    </ItemGroup>
+
 </Project>

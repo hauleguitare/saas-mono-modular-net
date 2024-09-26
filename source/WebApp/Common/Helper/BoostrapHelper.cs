@@ -1,5 +1,6 @@
 ﻿using System.Reflection;
-using WebApp.Common.Utils;
+using SharedKernel.Common.Attribute;
+using SharedKernel.Common.Struct;
 
 namespace WebApp.Common.Helper;
 
@@ -32,25 +33,31 @@ public static class ApiBoostrapHelper
         var types = AppDomain.CurrentDomain.GetAssemblies()
             .SelectMany(a => a.GetTypes()).ToList();
 
-        var injectableServiceObjects = types
-            .Where(t => t.IsInterface && t.IsDefined(typeof(InjectableAttribute), false))
+        var injectableServices = types
+            .Where(t => t.IsDefined(typeof(InjectableAttribute), true))
             .Select(t => new InjectableServiceObject()
             {
-                Interface = t,
+                Implementation = t,
+                Interface = t.GetCustomAttribute<InjectableAttribute>()?.InterfaceType,
                 Lifetime = t.GetCustomAttribute<InjectableAttribute>()?.Lifetime ?? ServiceLifetime.Transient,
             }).ToList();
 
 
-        for (int i = 0; i < injectableServiceObjects.Count; i++)
+        foreach (var injectableService in injectableServices)
         {
-            var injectableObj = injectableServiceObjects[i];
-
-            injectableObj.Implementation = types.FirstOrDefault(t => t is { IsClass: true, IsAbstract: false } && t.IsAssignableTo(injectableObj.Interface));
+            ArgumentNullException.ThrowIfNull(injectableService.Interface);
+            ArgumentNullException.ThrowIfNull(injectableService.Implementation);
+            ArgumentNullException.ThrowIfNull(injectableService.Lifetime);
+           
+            services.AddBootstrapService(
+                iType: injectableService.Interface, 
+                implType: injectableService.Implementation,
+                lifetime: injectableService.Lifetime.Value);
         }
     }
-    
-    
-    public static void AddService(this IServiceCollection services, Type iType, Type implType,
+
+
+    private static void AddBootstrapService(this IServiceCollection services, Type iType, Type implType,
         ServiceLifetime lifetime)
     {
         switch (lifetime)
@@ -71,16 +78,5 @@ public static class ApiBoostrapHelper
             default:
                 throw new ArgumentException("Invalid lifetime", nameof(lifetime));
         }
-    }
-    
-    public struct InjectableServiceObject
-    {
-        public Type? Interface { get; set; }
-        public Type? Implementation { get; set; }
-        public ServiceLifetime? Lifetime { get; set; }
-        
-        public InjectableServiceObject(
-            
-            ) {}
     }
 }
