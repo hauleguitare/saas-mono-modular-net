@@ -1,7 +1,4 @@
 ﻿using System.Reflection;
-using Infrastructure.DAL.Context;
-using Infrastructure.DAL.Identity;
-using Microsoft.AspNetCore.Identity;
 using SharedKernel.Common.Attribute;
 using SharedKernel.Common.Struct;
 
