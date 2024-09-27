@@ -1,4 +1,5 @@
 ﻿using Core.Entity;
+using Infrastructure.DAL.Context;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using SharedKernel.Common.Attribute;
@@ -22,7 +23,7 @@ public interface IEntityRepository<TEntity, in TKey>: IRepository where TEntity 
 }
 
 [Injectable(InterfaceType = typeof(IEntityRepository<,>), Lifetime = ServiceLifetime.Scoped)]
-public class EntityRepository<TEntity, TKey> : IEntityRepository<TEntity, TKey> where TEntity : class, IAggregateRoot 
+public abstract class EntityRepository<TEntity, TKey> : IEntityRepository<TEntity, TKey> where TEntity : class, IAggregateRoot 
 {
     private readonly DbSet<TEntity> _entity;
 
@@ -31,66 +32,67 @@ public class EntityRepository<TEntity, TKey> : IEntityRepository<TEntity, TKey> 
     //     _entity = context.Instance.Set<TEntity>();
     // }
     
-    public EntityRepository()
+    public EntityRepository(ApplicationDbContext dbContext)
     {
+        _entity = dbContext.Set<TEntity>();
     }
 
-    public IQueryable<TEntity> AsQueryable()
+    public virtual IQueryable<TEntity> AsQueryable()
     {
         return _entity.AsQueryable();
     }
 
-    public TEntity? GetById(TKey id)
+    public virtual TEntity? GetById(TKey id)
     {
         return _entity.Find(id);
     }
 
-    public Task<TEntity?> GetByIdAsync(TKey id, CancellationToken token)
+    public virtual Task<TEntity?> GetByIdAsync(TKey id, CancellationToken token)
     {
         return _entity.FindAsync(id).AsTask();
     }
 
-    public void Add(TEntity entity)
+    public virtual void Add(TEntity entity)
     {
         _entity.Add(entity);
     }
 
-    public Task AddAsync(TEntity entity, CancellationToken cancellationToken = default)
+    public virtual Task AddAsync(TEntity entity, CancellationToken cancellationToken = default)
     {
         return _entity.AddAsync(entity, cancellationToken).AsTask();
     }
 
-    public void AddRange(ICollection<TEntity> entities)
+    public virtual void AddRange(ICollection<TEntity> entities)
     {
         _entity.AddRange(entities);
     }
 
-    public Task AddRangeAsync(ICollection<TEntity> entities, CancellationToken cancellationToken = default)
+    public virtual Task AddRangeAsync(ICollection<TEntity> entities, CancellationToken cancellationToken = default)
     {
         return _entity.AddRangeAsync(entities, cancellationToken);
     }
 
-    public void UpdateRange(ICollection<TEntity> entities)
+    public virtual void UpdateRange(ICollection<TEntity> entities)
     {
         _entity.UpdateRange(entities);
     }
 
-    public void RemoveRange(ICollection<TEntity> entities)
+    public virtual void RemoveRange(ICollection<TEntity> entities)
     {
         _entity.RemoveRange(entities);
     }
 
-    public void Update(TEntity entity)
+    public virtual void Update(TEntity entity)
     {
         _entity.Update(entity);
     }
 
-    public void Remove(TEntity entity)
+    public virtual void Remove(TEntity entity)
     {
         _entity.Remove(entity);
     }
 
-    public void Remove(TKey id)
+    public virtual void Remove(TKey id)
     {
         var entity = _entity.Find(id);
 
