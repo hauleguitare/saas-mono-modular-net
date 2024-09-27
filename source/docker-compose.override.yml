@@ -14,8 +14,8 @@ services:
       - ${APPDATA}/ASP.NET/Https:/home/app/.aspnet/https:ro
     depends_on:
       - postgres
-    networks:
-      - webapp_network
+    links:
+      - postgres
   
   postgres:
     image: postgres
@@ -29,7 +29,7 @@ services:
       - "5432:5432"
     restart: unless-stopped
     networks:
-      - webapp_network
+      - postgres_network
 
   pgadmin:
     image: dpage/pgadmin4
@@ -46,7 +46,7 @@ services:
     depends_on:
       - postgres
     networks:
-      - webapp_network 
+      - postgres_network 
 
 
 volumes:
@@ -54,5 +54,5 @@ volumes:
   pgadmin:
     
 networks:
-  webapp_network:
+  postgres_network:
     driver: bridge
