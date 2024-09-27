@@ -1,21 +1,34 @@
 ﻿using System.Reflection;
+using Infrastructure.DAL.Context;
+using Infrastructure.DAL.Identity;
+using Microsoft.AspNetCore.Identity;
 using SharedKernel.Common.Attribute;
 using SharedKernel.Common.Struct;
 
-namespace WebApp.Common.Helper;
+namespace WebApp.Bootstrapper;
 
-public static class ApiBoostrapHelper
+public static class ApiBootstrapHelper
 {
-    public static void ConfigureServices(IServiceCollection services)
+    public static void ConfigureServices(IServiceCollection services, IConfiguration configuration, IWebHostEnvironment environment)
     {
         // Add services to the container.
         services.AddControllers();
+        
+        // Add Authorization Ccore
+        services.AddBootstrapAuthorization(configuration, environment);
+
+        // Add Identity
+        services.AddBootstrapIdentity(configuration, environment);
+        
         // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
         services.AddEndpointsApiExplorer();
         services.AddSwaggerGen();
         
         // Configure dependency injection
         ConfigureDependencyInjection(services);
+        
+        // Database
+        services.AddBootstrapDbContext(configuration, environment);
     }
 
     public static void RegisterMiddlewares(WebApplication app)
@@ -26,6 +39,12 @@ public static class ApiBoostrapHelper
             app.UseSwagger();
             app.UseSwaggerUI();
         }
+        
+        // app.UseHttpsRedirection();
+
+        app.UseAuthorization();
+
+        app.MapControllers();
     }
 
     public static void ConfigureDependencyInjection(IServiceCollection services)
@@ -55,7 +74,6 @@ public static class ApiBoostrapHelper
                 lifetime: injectableService.Lifetime.Value);
         }
     }
-
 
     private static void AddBootstrapService(this IServiceCollection services, Type iType, Type implType,
         ServiceLifetime lifetime)
