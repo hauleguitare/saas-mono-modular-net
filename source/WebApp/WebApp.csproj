@@ -26,6 +26,7 @@
     </ItemGroup>
 
     <ItemGroup>
+      <ProjectReference Include="..\Infrastructure.CQRS\Infrastructure.CQRS.csproj" />
       <ProjectReference Include="..\Infrastructure.DAL\Infrastructure.DAL.csproj" />
       <ProjectReference Include="..\SharedKernel\SharedKernel.csproj" />
     </ItemGroup>
