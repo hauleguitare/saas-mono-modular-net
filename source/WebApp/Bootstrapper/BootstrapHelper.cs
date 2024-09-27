@@ -1,13 +1,13 @@
 ﻿using System.Reflection;
 using Infrastructure.DAL.Context;
+using Infrastructure.DAL.Identity;
 using Microsoft.AspNetCore.Identity;
-using Microsoft.EntityFrameworkCore;
 using SharedKernel.Common.Attribute;
 using SharedKernel.Common.Struct;
 
 namespace WebApp.Bootstrapper;
 
-public static class ApiBoostrapHelper
+public static class ApiBootstrapHelper
 {
     public static void ConfigureServices(IServiceCollection services, IConfiguration configuration, IWebHostEnvironment environment)
     {
@@ -15,10 +15,10 @@ public static class ApiBoostrapHelper
         services.AddControllers();
         
         // Add Authorization Ccore
-        services.AddAuthorization();
+        services.AddBootstrapAuthorization(configuration, environment);
 
-        services.AddIdentityApiEndpoints<IdentityUser>()
-            .AddEntityFrameworkStores<ApplicationDbContext>();
+        // Add Identity
+        services.AddBootstrapIdentity(configuration, environment);
         
         // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
         services.AddEndpointsApiExplorer();
@@ -28,18 +28,7 @@ public static class ApiBoostrapHelper
         ConfigureDependencyInjection(services);
         
         // Database
-        services.AddDbContext<ApplicationDbContext>(
-            opts =>
-            {
-                var connectionString = configuration.GetConnectionString("DefaultConnection");
-                opts.UseNpgsql(connectionString);
-
-                if (environment.IsDevelopment())
-                {
-                    opts.EnableSensitiveDataLogging();
-                    opts.EnableDetailedErrors();
-                }
-            });
+        services.AddBootstrapDbContext(configuration, environment);
     }
 
     public static void RegisterMiddlewares(WebApplication app)
@@ -54,8 +43,6 @@ public static class ApiBoostrapHelper
         // app.UseHttpsRedirection();
 
         app.UseAuthorization();
-
-        app.MapIdentityApi<IdentityUser>();
 
         app.MapControllers();
     }
