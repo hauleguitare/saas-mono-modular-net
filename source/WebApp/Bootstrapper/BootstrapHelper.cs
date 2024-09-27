@@ -24,11 +24,14 @@ public static class ApiBootstrapHelper
         services.AddEndpointsApiExplorer();
         services.AddSwaggerGen();
         
-        // Configure dependency injection
-        ConfigureDependencyInjection(services);
-        
         // Database
         services.AddBootstrapDbContext(configuration, environment);
+        
+        // Mediator
+        services.AddBootstrapMediator(configuration, environment);
+        
+        // Configure dependency injection
+        ConfigureDependencyInjection(services);
     }
 
     public static void RegisterMiddlewares(WebApplication app)
