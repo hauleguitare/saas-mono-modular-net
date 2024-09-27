@@ -6,32 +6,73 @@ namespace Infrastructure.DAL.UnitOfWork;
 
 public interface IUnitOfWork: IDisposable
 {
-    public ApplicationDbContext Context { get; set; }
+    public bool SaveChanges();
+    public Task<bool> SaveChangesAsync(CancellationToken cancellationToken = default);
+
+    public void Commit();
+    public Task CommitAsync(CancellationToken cancellationToken = default);
+
+    public void Rollback();
+
+    public Task RollbackAsync(CancellationToken cancellationToken = default);
 }
 
 
 [Injectable(InterfaceType = typeof(IUnitOfWork), Lifetime = ServiceLifetime.Scoped)]
-public class UnitOfWork: IUnitOfWork
+public sealed class UnitOfWork: IUnitOfWork
 {
-    public ApplicationDbContext Context { get; set; }
+    private ApplicationDbContext Context { get; }
     
     public UnitOfWork(ApplicationDbContext applicationDbContext)
     {
         Context = applicationDbContext;
     }
+
+    public bool SaveChanges()
+    {
+        return Context.SaveChanges() > 0;
+    }
+
+    public async Task<bool> SaveChangesAsync(CancellationToken cancellationToken = default)
+    {
+        return await Context.SaveChangesAsync(cancellationToken) > 0;
+    }
+
+    public void Commit()
+    {
+        Context.Database.CommitTransaction();
+    }
+
+    public Task CommitAsync(CancellationToken cancellationToken = default)
+    {
+        return Context.Database.CommitTransactionAsync(cancellationToken);
+    }
+    
+    public void Rollback()
+    {
+        Context.Database.RollbackTransaction();
+    }
+
+    public Task RollbackAsync(CancellationToken cancellationToken = default)
+    {
+        return Context.Database.RollbackTransactionAsync(cancellationToken);
+    }
+    
+
     
     private bool _disposed = false;
-    protected virtual void Dispose(bool disposing)
+    private void Dispose(bool disposing)
     {
-        if (!this._disposed)
+        if (!_disposed)
         {
             if (disposing)
             {
                 //TODO:
                 // Implement context dispose here
+                Context.Dispose();
             }
         }
-        this._disposed = true;
+        _disposed = true;
     }
     
     public void Dispose()
