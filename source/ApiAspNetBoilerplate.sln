@@ -23,6 +23,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Infrastructure.DAL", "Infra
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Infrastructure.CQRS", "Infrastructure.CQRS\Infrastructure.CQRS.csproj", "{0CAA693A-A3EE-4621-947C-3D10C7136A2C}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Modules", "Modules", "{63F61CE7-2FD2-4A31-B160-43AFC2ED552D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Infrastructure.Shared", "Infrastructure.Shared\Infrastructure.Shared.csproj", "{DE08F6DE-83D3-4D67-8BA1-28EF4406690F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -53,6 +57,10 @@ Global
 		{0CAA693A-A3EE-4621-947C-3D10C7136A2C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0CAA693A-A3EE-4621-947C-3D10C7136A2C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0CAA693A-A3EE-4621-947C-3D10C7136A2C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DE08F6DE-83D3-4D67-8BA1-28EF4406690F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DE08F6DE-83D3-4D67-8BA1-28EF4406690F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DE08F6DE-83D3-4D67-8BA1-28EF4406690F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DE08F6DE-83D3-4D67-8BA1-28EF4406690F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -63,5 +71,6 @@ Global
 		{A7D517B7-7302-49B1-9560-7C6C853381D6} = {52A816B3-17BE-44BD-A1D3-062319AB9212}
 		{C883C21C-6B8A-46D3-9DDC-E0DBF389D201} = {23DC4EEF-2B7F-4BA3-8849-38D038C2BB3E}
 		{0CAA693A-A3EE-4621-947C-3D10C7136A2C} = {23DC4EEF-2B7F-4BA3-8849-38D038C2BB3E}
+		{DE08F6DE-83D3-4D67-8BA1-28EF4406690F} = {23DC4EEF-2B7F-4BA3-8849-38D038C2BB3E}
 	EndGlobalSection
 EndGlobal
