@@ -23,7 +23,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Infrastructure.DAL", "Infra
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Infrastructure.CQRS", "Infrastructure.CQRS\Infrastructure.CQRS.csproj", "{0CAA693A-A3EE-4621-947C-3D10C7136A2C}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Modules", "Modules", "{63F61CE7-2FD2-4A31-B160-43AFC2ED552D}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Module", "Module", "{63F61CE7-2FD2-4A31-B160-43AFC2ED552D}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Infrastructure.Shared", "Infrastructure.Shared\Infrastructure.Shared.csproj", "{DE08F6DE-83D3-4D67-8BA1-28EF4406690F}"
 EndProject
