@@ -1,6 +1,7 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
 
-namespace WebApp.Common.Models;
+namespace Infrastructure.Shared.Common.Controller;
 
 /// <summary>
 /// Defines an abstract class ApiResult and all class will inherit.
@@ -173,6 +174,6 @@ public sealed class ApiConflictResult: ApiResult
 }
 
 
-public readonly record struct ApiValue(int StatusCode,object? Data = null){}
+public readonly record struct ApiValue(int StatusCode, object? Data = null);
 
-public readonly record struct ApiError(int StatusCode, string? Message, string? Error) {}
+public readonly record struct ApiError(int StatusCode, string? Message, string? Error);
