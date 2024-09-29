@@ -26,8 +26,7 @@ public static class BootstrapDatabaseExtension
 
 
         // Add Unit Of Work
-        services.AddUnitOfWork<ApplicationDbContext>()
-            .AddEntityRepository<ApplicationDbContext>();
+        services.AddUnitOfWork<ApplicationDbContext>();
 
         return services;
     }
@@ -86,34 +85,6 @@ public static class BootstrapDatabaseExtension
         ServiceLifetime lifetime = ServiceLifetime.Scoped) where TContext : DbContext
     {
         var repoType = typeof(IEntityRepository<,>);
-        
-        switch (lifetime)
-        {
-            case ServiceLifetime.Scoped:
-                services.AddScoped(repoType, provider =>
-                {
-                    var ctx = provider.GetRequiredService<TContext>();
-                    return new UnitOfWork(ctx);
-                });
-                break;
-            
-            case ServiceLifetime.Transient:
-                services.AddScoped(repoType, provider =>
-                {
-                    var ctx = provider.GetRequiredService<TContext>();
-                    return new UnitOfWork(ctx);
-                });
-                break;
-            
-            case ServiceLifetime.Singleton:
-                services.AddScoped(repoType, provider =>
-                {
-                    var ctx = provider.GetRequiredService<TContext>();
-                    return new UnitOfWork(ctx);
-                });
-                break;
-        }
-        
         return services;
     }
 }
