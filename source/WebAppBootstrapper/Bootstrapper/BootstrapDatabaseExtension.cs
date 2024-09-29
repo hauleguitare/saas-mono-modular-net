@@ -3,7 +3,7 @@ using Infrastructure.DAL.Repository;
 using Infrastructure.DAL.UnitOfWork;
 using Microsoft.EntityFrameworkCore;
 
-namespace WebApp.Bootstrapper;
+namespace WebAppBootstrapper.Bootstrapper;
 
 public static class BootstrapDatabaseExtension
 {

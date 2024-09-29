@@ -1,6 +1,6 @@
 ﻿using Infrastructure.CQRS.Command;
 
-namespace WebApp.Bootstrapper;
+namespace WebAppBootstrapper.Bootstrapper;
 
 public static class BootstrapMediatorExtension
 {

@@ -2,7 +2,7 @@
 using SharedKernel.Common.Attribute;
 using SharedKernel.Common.Struct;
 
-namespace WebApp.Bootstrapper;
+namespace WebAppBootstrapper.Bootstrapper;
 
 public static class ApiBootstrapHelper
 {
