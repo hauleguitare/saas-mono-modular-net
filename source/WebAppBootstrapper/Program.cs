@@ -1,4 +1,4 @@
-using WebApp.Bootstrapper;
+using WebAppBootstrapper.Bootstrapper;
 
 var builder = WebApplication.CreateBuilder(args);
 

@@ -2,7 +2,7 @@
 using Infrastructure.DAL.Identity;
 using Microsoft.AspNetCore.Identity;
 
-namespace WebApp.Bootstrapper;
+namespace WebAppBootstrapper.Bootstrapper;
 
 public static class BootstrapIdentityExtension
 {

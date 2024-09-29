@@ -1,4 +1,5 @@
 ﻿using Infrastructure.DAL.Context;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using SharedKernel.Common.Attribute;
 
@@ -17,15 +18,13 @@ public interface IUnitOfWork: IDisposable
     public Task RollbackAsync(CancellationToken cancellationToken = default);
 }
 
-
-[Injectable(InterfaceType = typeof(IUnitOfWork), Lifetime = ServiceLifetime.Scoped)]
 public sealed class UnitOfWork: IUnitOfWork
 {
-    private ApplicationDbContext Context { get; }
+    private DbContext Context { get; }
     
-    public UnitOfWork(ApplicationDbContext applicationDbContext)
+    public UnitOfWork(DbContext dbContext)
     {
-        Context = applicationDbContext;
+        Context = dbContext;
     }
 
     public bool SaveChanges()
