@@ -23,6 +23,7 @@
     <ItemGroup>
       <ProjectReference Include="..\MonoModularNet.Infrastructure.CQRS\MonoModularNet.Infrastructure.CQRS.csproj" />
       <ProjectReference Include="..\MonoModularNet.Infrastructure.DAL\MonoModularNet.Infrastructure.DAL.csproj" />
+      <ProjectReference Include="..\MonoModularNet.Module.Auth.Infrastructure\MonoModularNet.Module.Auth.Infrastructure.csproj" />
       <ProjectReference Include="..\SharedKernel\SharedKernel.csproj" />
     </ItemGroup>
 

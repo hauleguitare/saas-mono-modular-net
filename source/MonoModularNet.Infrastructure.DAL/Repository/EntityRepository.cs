@@ -22,6 +22,7 @@ public interface IEntityRepository<TEntity, in TKey>: IRepository where TEntity 
     void Remove(TKey id);
 }
 
+[Injectable(InterfaceType = typeof(IEntityRepository<,>), Lifetime = ServiceLifetime.Scoped)]
 public class EntityRepository<TEntity, TKey> : IEntityRepository<TEntity, TKey> where TEntity : class, IAggregateRoot 
 {
     private readonly DbSet<TEntity> _entity;
@@ -31,7 +32,7 @@ public class EntityRepository<TEntity, TKey> : IEntityRepository<TEntity, TKey> 
     //     _entity = context.Instance.Set<TEntity>();
     // }
     
-    public EntityRepository(DbContext dbContext)
+    public EntityRepository(ApplicationDbContext dbContext)
     {
         _entity = dbContext.Set<TEntity>();
     }

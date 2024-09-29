@@ -27,6 +27,9 @@ public static class ApiBootstrapHelper
         // Mediator
         services.AddBootstrapMediator(configuration, environment);
         
+        // MonoModular Modules
+        services.AddBootstrapMonoModularNetModule(configuration, environment);
+        
         // Configure dependency injection
         ConfigureDependencyInjection(services);
     }
