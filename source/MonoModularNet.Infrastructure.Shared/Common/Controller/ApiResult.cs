@@ -40,7 +40,7 @@ public sealed class ApiBadRequestResult: ApiResult
     /// </summary>
     /// <param name="message">The content to describe message error from server to client.</param>
     /// <param name="error">The content to describe error detail from server to client.</param>
-    public ApiBadRequestResult(string? message = null, string? error = null) : base(new
+    public ApiBadRequestResult(string[]? message = null, string[]? error = null) : base(new
     {
         Errors = new List<ApiError>()
         {
@@ -62,13 +62,13 @@ public sealed class ApiForbiddenResult: ApiResult
     /// <summary>
     /// Initializes a new instance of the <see cref="ApiBadRequestResult"/> class.
     /// </summary>
-    /// <param name="message">The content to describe message error from server to client.</param>
-    /// <param name="error">The content to describe error detail from server to client.</param>
-    public ApiForbiddenResult(string? message = null, string? error = null) : base(new
+    /// <param name="messages">The content to describe message error from server to client.</param>
+    /// <param name="errors">The content to describe error detail from server to client.</param>
+    public ApiForbiddenResult(string[]? messages = null, string[]? errors = null) : base(new
     {
         Errors = new List<ApiError>()
         {
-            new (DefaultStatusCode, message, error)
+            new (DefaultStatusCode, messages, errors)
         }
     })
     {
@@ -86,13 +86,13 @@ public sealed class ApiUnauthorizedResult: ApiResult
     /// <summary>
     /// Initializes a new instance of the <see cref="ApiBadRequestResult"/> class.
     /// </summary>
-    /// <param name="message">The content to describe message error from server to client.</param>
-    /// <param name="error">The content to describe error detail from server to client.</param>
-    public ApiUnauthorizedResult(string? message = null, string? error = null) : base(new
+    /// <param name="messages">The content to describe message error from server to client.</param>
+    /// <param name="errors">The content to describe error detail from server to client.</param>
+    public ApiUnauthorizedResult(string[]? messages = null, string[]? errors = null) : base(new
     {
         Errors = new List<ApiError>()
         {
-            new (DefaultStatusCode, message, error)
+            new (DefaultStatusCode, messages, errors)
         }
     })
     {
@@ -110,13 +110,13 @@ public sealed class ApiInternalServerResult: ApiResult
     /// <summary>
     /// Initializes a new instance of the <see cref="ApiBadRequestResult"/> class.
     /// </summary>
-    /// <param name="message">The content to describe message error from server to client.</param>
-    /// <param name="error">The content to describe error detail from server to client.</param>
-    public ApiInternalServerResult(string? message = null, string? error = null) : base(new
+    /// <param name="messages">The content to describe message error from server to client.</param>
+    /// <param name="errors">The content to describe error detail from server to client.</param>
+    public ApiInternalServerResult(string[]? messages = null, string[]? errors = null) : base(new
     {
         Errors = new List<ApiError>()
         {
-            new (DefaultStatusCode, message, error)
+            new (DefaultStatusCode, messages, messages)
         }
     })
     {
@@ -134,13 +134,13 @@ public sealed class ApiNotFoundResult: ApiResult
     /// <summary>
     /// Initializes a new instance of the <see cref="ApiBadRequestResult"/> class.
     /// </summary>
-    /// <param name="message">The content to describe message error from server to client.</param>
-    /// <param name="error">The content to describe error detail from server to client.</param>
-    public ApiNotFoundResult(string? message = null, string? error = null) : base(new
+    /// <param name="messages">The content to describe message error from server to client.</param>
+    /// <param name="errors">The content to describe error detail from server to client.</param>
+    public ApiNotFoundResult(string[]? messages = null, string[]? errors = null) : base(new
     {
         Errors = new List<ApiError>()
         {
-            new (DefaultStatusCode, message, error)
+            new (DefaultStatusCode, messages, errors)
         }
     })
     {
@@ -159,13 +159,13 @@ public sealed class ApiConflictResult: ApiResult
     /// <summary>
     /// Initializes a new instance of the <see cref="ApiBadRequestResult"/> class.
     /// </summary>
-    /// <param name="message">The content to describe message error from server to client.</param>
-    /// <param name="error">The content to describe error detail from server to client.</param>
-    public ApiConflictResult(string? message = null, string? error = null) : base(new
+    /// <param name="messages">The content to describe message error from server to client.</param>
+    /// <param name="errors">The content to describe error detail from server to client.</param>
+    public ApiConflictResult(string[]? messages = null, string[]? errors = null) : base(new
     {
         Errors = new List<ApiError>()
         {
-            new (DefaultStatusCode, message, error)
+            new (DefaultStatusCode, messages, errors)
         }
     })
     {
@@ -176,4 +176,4 @@ public sealed class ApiConflictResult: ApiResult
 
 public readonly record struct ApiValue(int StatusCode, object? Data = null);
 
-public readonly record struct ApiError(int StatusCode, string? Message, string? Error);
+public readonly record struct ApiError(int StatusCode, string[]? Messages, string[]? Errors);
