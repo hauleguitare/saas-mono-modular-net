@@ -3,7 +3,6 @@ using Dapper;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Npgsql;
-using SharedKernel.Common.Attribute;
 
 namespace MonoModularNet.Infrastructure.DAL.Context;
 

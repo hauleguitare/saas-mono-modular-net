@@ -5,19 +5,13 @@
         <ImplicitUsings>enable</ImplicitUsings>
         <Nullable>enable</Nullable>
     </PropertyGroup>
-    
+
     <ItemGroup>
-        <FrameworkReference Include="Microsoft.AspNetCore.App" />
+      <ProjectReference Include="..\MonoModularNet.Infrastructure.Shared\MonoModularNet.Infrastructure.Shared.csproj" />
     </ItemGroup>
-    
+
     <ItemGroup>
-      <PackageReference Include="FluentValidation" Version="11.10.0" />
       <PackageReference Include="Hangfire" Version="1.8.14" />
-      <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
-    </ItemGroup>
-    
-    <ItemGroup>
-      <ProjectReference Include="..\SharedKernel\SharedKernel.csproj" />
     </ItemGroup>
 
 </Project>

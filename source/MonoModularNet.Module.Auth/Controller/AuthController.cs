@@ -1,5 +1,5 @@
-﻿using MonoModularNet.Module.Auth.Domain.Handler;
-using MonoModularNet.Module.Auth.Domain.Model;
+﻿using MonoModularNet.Module.Auth.Domain.Model;
+using MonoModularNet.Module.Auth.Domain.SignUp.Command;
 
 namespace MonoModularNet.Module.Auth.Controller;
 
@@ -22,7 +22,7 @@ public class AuthController: ApiControllerBase
     [HttpPost("sign-up")]
     public async Task<IActionResult> SignUp([FromBody] SignUpReq req)
     {
-        var command = new SignUpCqrsCommand(email: req.Email, password: req.Password);
+        var command = new SignUpCommand(req.Email, req.Password);
         var result = await _mediatorHandler.SendAsync(command);
 
         if (!result.IsSuccess)

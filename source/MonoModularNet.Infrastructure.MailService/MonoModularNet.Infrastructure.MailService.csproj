@@ -5,18 +5,14 @@
         <ImplicitUsings>enable</ImplicitUsings>
         <Nullable>enable</Nullable>
     </PropertyGroup>
-    
+
     <ItemGroup>
-        <FrameworkReference Include="Microsoft.AspNetCore.App" />
+      <PackageReference Include="MailKit" Version="4.8.0" />
+      <PackageReference Include="MimeKit" Version="4.8.0" />
     </ItemGroup>
-    
+
     <ItemGroup>
-      <PackageReference Include="FluentValidation" Version="11.10.0" />
-      <PackageReference Include="Hangfire" Version="1.8.14" />
-      <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
-    </ItemGroup>
-    
-    <ItemGroup>
+      <ProjectReference Include="..\MonoModularNet.Infrastructure.Shared\MonoModularNet.Infrastructure.Shared.csproj" />
       <ProjectReference Include="..\SharedKernel\SharedKernel.csproj" />
     </ItemGroup>
 

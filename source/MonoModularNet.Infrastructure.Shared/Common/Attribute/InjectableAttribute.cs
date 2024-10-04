@@ -1,6 +1,6 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 
-namespace SharedKernel.Common.Attribute;
+namespace MonoModularNet.Infrastructure.Shared.Common.Attribute;
 
 [AttributeUsage(AttributeTargets.Class)]
 public class InjectableAttribute: System.Attribute

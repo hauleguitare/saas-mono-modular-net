@@ -1,37 +1,29 @@
-﻿namespace MonoModularNet.Module.Auth.Domain.Handler;
+﻿using MonoModularNet.Infrastructure.MailService.Model;
+using MonoModularNet.Infrastructure.MailService.Service;
+using MonoModularNet.Module.Auth.Domain.SignUp.Command;
 
-public class SignUpCqrsCommand: CqrsCommand
-{
-    public SignUpCqrsCommand(string email, string password)
-    {
-        Email = email;
-        Password = password;
-    }
-
-    public string Email { get; set; }
-    public string Password { get; set; }
-}
+namespace MonoModularNet.Module.Auth.Domain.SignUp.Handler;
 
 
-public class SignUpCqrsCommandHandler: CqrsCommandHandler<SignUpCqrsCommand>
+public class SignUpCommandHandler: CqrsCommandHandler<SignUpCommand>
 {
     private readonly UserManager<ApplicationUser> _userManager;
 
-    public SignUpCqrsCommandHandler(UserManager<ApplicationUser> userManager)
+    public SignUpCommandHandler(UserManager<ApplicationUser> userManager)
     {
         _userManager = userManager;
     }
 
-    public override async Task<CqrsResult> Handle(SignUpCqrsCommand request, CancellationToken cancellationToken)
+    public override async Task<CqrsResult> Handle(SignUpCommand request, CancellationToken cancellationToken)
     {
         var user = new ApplicationUser()
         {
             Email = request.Email,
             UserName = request.Email
         };
-
+        
         var result = await _userManager.CreateAsync(user, request.Password);
-
+        
         if (!result.Succeeded)
         {
             return new CqrsResult()

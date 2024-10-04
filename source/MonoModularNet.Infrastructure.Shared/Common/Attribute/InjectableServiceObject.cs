@@ -1,6 +1,6 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 
-namespace SharedKernel.Common.Struct;
+namespace MonoModularNet.Infrastructure.Shared.Common.Attribute;
 
 public struct InjectableServiceObject
 {

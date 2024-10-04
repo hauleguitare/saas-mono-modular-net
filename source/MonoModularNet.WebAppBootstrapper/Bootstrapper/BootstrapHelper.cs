@@ -1,6 +1,7 @@
 ﻿using System.Reflection;
-using SharedKernel.Common.Attribute;
-using SharedKernel.Common.Struct;
+using Hangfire;
+using MonoModularNet.Infrastructure.Shared.Common.Attribute;
+using MonoModularNet.WebAppBootstrapper.Middleware;
 
 namespace MonoModularNet.WebAppBootstrapper.Bootstrapper;
 
@@ -21,11 +22,23 @@ public static class ApiBootstrapHelper
         services.AddEndpointsApiExplorer();
         services.AddSwaggerGen();
         
+        // Add Host Exception Middleware
+        services.AddBootstrapMiddleware(configuration, environment);
+        
         // Database
         services.AddBootstrapDbContext(configuration, environment);
         
         // Mediator
         services.AddBootstrapMediator(configuration, environment);
+        
+        // Hangfire
+        services.AddBootstrapHangfire(configuration, environment);
+        
+        // Mail
+        services.AddBootstrapMail(configuration, environment);
+        
+        // Validation
+        services.AddBootstrapValidation(configuration, environment);
         
         // MonoModular Modules
         services.AddBootstrapMonoModularNetModule(configuration, environment);
@@ -46,6 +59,10 @@ public static class ApiBootstrapHelper
         // app.UseHttpsRedirection();
 
         app.UseAuthorization();
+        
+        app.UseHangfireDashboard("/jobs");
+
+        app.UseMiddleware<HostExceptionMiddleware>();
 
         app.MapControllers();
     }

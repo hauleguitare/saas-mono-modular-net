@@ -11,6 +11,7 @@
     </ItemGroup>
 
     <ItemGroup>
+      <ProjectReference Include="..\MonoModularNet.Infrastructure.Shared\MonoModularNet.Infrastructure.Shared.csproj" />
       <ProjectReference Include="..\SharedKernel\SharedKernel.csproj" />
     </ItemGroup>
 

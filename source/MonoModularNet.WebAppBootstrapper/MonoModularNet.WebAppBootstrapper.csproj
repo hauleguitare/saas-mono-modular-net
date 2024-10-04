@@ -12,6 +12,9 @@
     </PropertyGroup>
 
     <ItemGroup>
+        <PackageReference Include="FluentValidation.DependencyInjectionExtensions" Version="11.10.0" />
+        <PackageReference Include="Hangfire.InMemory" Version="1.0.0" />
+        <PackageReference Include="Hangfire.PostgreSql" Version="1.20.9" />
         <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="8.0.8">
           <PrivateAssets>all</PrivateAssets>
           <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
@@ -23,6 +26,7 @@
     <ItemGroup>
       <ProjectReference Include="..\MonoModularNet.Infrastructure.CQRS\MonoModularNet.Infrastructure.CQRS.csproj" />
       <ProjectReference Include="..\MonoModularNet.Infrastructure.DAL\MonoModularNet.Infrastructure.DAL.csproj" />
+      <ProjectReference Include="..\MonoModularNet.Infrastructure.MailService\MonoModularNet.Infrastructure.MailService.csproj" />
       <ProjectReference Include="..\MonoModularNet.Module.Auth\MonoModularNet.Module.Auth.csproj" />
       <ProjectReference Include="..\SharedKernel\SharedKernel.csproj" />
     </ItemGroup>
