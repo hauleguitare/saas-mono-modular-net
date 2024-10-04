@@ -7,8 +7,14 @@
     </PropertyGroup>
 
     <ItemGroup>
+      <ProjectReference Include="..\MonoModularNet.Infrastructure.CQRS\MonoModularNet.Infrastructure.CQRS.csproj" />
+      <ProjectReference Include="..\MonoModularNet.Infrastructure.DAL\MonoModularNet.Infrastructure.DAL.csproj" />
       <ProjectReference Include="..\MonoModularNet.Infrastructure.Shared\MonoModularNet.Infrastructure.Shared.csproj" />
-      <ProjectReference Include="..\MonoModularNet.Module.Auth.Core\MonoModularNet.Module.Auth.Core.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Folder Include="Domain\Service\" />
+      <Folder Include="Infrastructure\Mapper\" />
     </ItemGroup>
 
 </Project>

@@ -6,7 +6,8 @@ namespace MonoModularNet.Module.Auth.Infrastructure;
 
 public static class Startup
 {
-    public static IServiceCollection AddMonoModularNetModuleAuth(this IServiceCollection services, IConfiguration configuration, IWebHostEnvironment environment)
+    public static IServiceCollection AddMonoModularNetModuleAuth(this IServiceCollection services,
+        IConfiguration configuration, IWebHostEnvironment environment)
     {
         return services;
     }

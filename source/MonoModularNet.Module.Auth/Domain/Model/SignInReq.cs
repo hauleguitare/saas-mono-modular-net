@@ -1,3 +1,3 @@
-﻿namespace MonoModularNet.Module.Auth.Model;
+﻿namespace MonoModularNet.Module.Auth.Domain.Model;
 
 public record SignInReq(string Email, string Password);

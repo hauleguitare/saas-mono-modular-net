@@ -2,12 +2,12 @@
 
 namespace MonoModularNet.Infrastructure.CQRS.Query;
 
-public interface IQuery
+public interface ICqrsQuery
 {
     public DateTime? QueriedAt { get; set; }
 }
 
-public abstract class Query<T>: IRequest<T>, IQuery
+public abstract class CqrsQuery<T>: IRequest<T>, ICqrsQuery
 {
     public DateTime? QueriedAt { get; set; } = DateTime.UtcNow;
 }
