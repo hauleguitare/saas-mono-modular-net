@@ -19,7 +19,7 @@ public class AuthController: ApiControllerBase
     [HttpPost("sign-in")]
     public Task<IActionResult> SignIn([FromBody] SignInReq req)
     {
-        return Task.FromResult<IActionResult>(new ApiOkResult("Ok"));
+        throw new NotImplementedException();
     }
 
     [HttpPost("sign-up")]
@@ -29,5 +29,17 @@ public class AuthController: ApiControllerBase
         await _mediatorHandler.SendAsync(command);
 
         return new ApiOkResult("Ok");
+    }
+
+    [HttpPost("email-confirmation")]
+    public Task<IActionResult> EmailConfirmation()
+    {
+        throw new NotImplementedException();
+    }
+
+    [HttpPost("change-password")]
+    public Task<IActionResult> ChangePassword()
+    {
+        throw new NotImplementedException();
     }
 }
