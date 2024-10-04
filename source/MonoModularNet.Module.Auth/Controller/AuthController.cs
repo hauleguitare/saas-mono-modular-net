@@ -1,7 +1,4 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using MonoModularNet.Infrastructure.CQRS.Mediator;
-using MonoModularNet.Infrastructure.Shared.Common.Controller;
-using MonoModularNet.Module.Auth.Domain.Handler;
+﻿using MonoModularNet.Module.Auth.Domain.Handler;
 using MonoModularNet.Module.Auth.Domain.Model;
 
 namespace MonoModularNet.Module.Auth.Controller;

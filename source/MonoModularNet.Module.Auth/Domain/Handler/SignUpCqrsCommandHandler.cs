@@ -1,8 +1,4 @@
-﻿using Microsoft.AspNetCore.Identity;
-using MonoModularNet.Infrastructure.CQRS.Command;
-using MonoModularNet.Infrastructure.DAL.Identity;
-
-namespace MonoModularNet.Module.Auth.Domain.Handler;
+﻿namespace MonoModularNet.Module.Auth.Domain.Handler;
 
 public class SignUpCqrsCommand: CqrsCommand
 {
@@ -26,7 +22,7 @@ public class SignUpCqrsCommandHandler: CqrsCommandHandler<SignUpCqrsCommand>
         _userManager = userManager;
     }
 
-    public override async Task Handle(SignUpCqrsCommand request, CancellationToken cancellationToken)
+    public async override Task<CqrsResult> Handle(SignUpCqrsCommand request, CancellationToken cancellationToken)
     {
         var user = new ApplicationUser()
         {
@@ -35,5 +31,18 @@ public class SignUpCqrsCommandHandler: CqrsCommandHandler<SignUpCqrsCommand>
         };
 
         var result = await _userManager.CreateAsync(user, request.Password);
+
+        if (!result.Succeeded)
+        {
+            return new CqrsResult()
+            {
+                Errors = result.Errors.Select(e => e.Description).ToArray()
+            };
+        }
+        
+        return new CqrsResult()
+        {
+            IsSuccess = true
+        };
     }
 }
