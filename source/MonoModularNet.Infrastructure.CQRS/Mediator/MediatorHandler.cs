@@ -1,10 +1,7 @@
 ﻿using MediatR;
-using Microsoft.Extensions.DependencyInjection;
-using SharedKernel.Common.Attribute;
 
 namespace MonoModularNet.Infrastructure.CQRS.Mediator;
 
-[Injectable(InterfaceType = typeof(IMediatorHandler), Lifetime = ServiceLifetime.Transient)]
 public class MediatorHandler: IMediatorHandler
 {
     private readonly IMediator _mediator;
@@ -15,6 +12,11 @@ public class MediatorHandler: IMediatorHandler
     }
 
     public Task<TResponse> SendAsync<TResponse>(IRequest<TResponse> request, CancellationToken cancellationToken = default)
+    {
+        return _mediator.Send(request, cancellationToken);
+    }
+
+    public Task SendAsync(IRequest request, CancellationToken cancellationToken = default)
     {
         return _mediator.Send(request, cancellationToken);
     }
