@@ -1,7 +1,6 @@
 ﻿using MonoModularNet.Infrastructure.DAL.Context;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
-using SharedKernel.Common.Attribute;
 
 namespace MonoModularNet.Infrastructure.DAL.UnitOfWork;
 

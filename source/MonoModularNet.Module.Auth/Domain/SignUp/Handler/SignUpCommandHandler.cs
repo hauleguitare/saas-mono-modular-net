@@ -1,4 +1,6 @@
-﻿using MonoModularNet.Module.Auth.Domain.SignUp.Command;
+﻿using MonoModularNet.Infrastructure.MailService.Model;
+using MonoModularNet.Infrastructure.MailService.Service;
+using MonoModularNet.Module.Auth.Domain.SignUp.Command;
 
 namespace MonoModularNet.Module.Auth.Domain.SignUp.Handler;
 
@@ -19,9 +21,9 @@ public class SignUpCommandHandler: CqrsCommandHandler<SignUpCommand>
             Email = request.Email,
             UserName = request.Email
         };
-
+        
         var result = await _userManager.CreateAsync(user, request.Password);
-
+        
         if (!result.Succeeded)
         {
             return new CqrsResult()

@@ -2,7 +2,7 @@
 using MonoModularNet.Infrastructure.DAL.Context;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
-using SharedKernel.Common.Attribute;
+using MonoModularNet.Infrastructure.Shared.Common.Attribute;
 
 namespace MonoModularNet.Infrastructure.DAL.Repository;
 

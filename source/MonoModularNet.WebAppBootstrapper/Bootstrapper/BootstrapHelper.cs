@@ -1,7 +1,7 @@
 ﻿using System.Reflection;
+using Hangfire;
+using MonoModularNet.Infrastructure.Shared.Common.Attribute;
 using MonoModularNet.WebAppBootstrapper.Middleware;
-using SharedKernel.Common.Attribute;
-using SharedKernel.Common.Struct;
 
 namespace MonoModularNet.WebAppBootstrapper.Bootstrapper;
 
@@ -31,6 +31,12 @@ public static class ApiBootstrapHelper
         // Mediator
         services.AddBootstrapMediator(configuration, environment);
         
+        // Hangfire
+        services.AddBootstrapHangfire(configuration, environment);
+        
+        // Mail
+        services.AddBootstrapMail(configuration, environment);
+        
         // Validation
         services.AddBootstrapValidation(configuration, environment);
         
@@ -53,6 +59,8 @@ public static class ApiBootstrapHelper
         // app.UseHttpsRedirection();
 
         app.UseAuthorization();
+        
+        app.UseHangfireDashboard("/jobs");
 
         app.UseMiddleware<HostExceptionMiddleware>();
 

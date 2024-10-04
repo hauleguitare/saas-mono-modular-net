@@ -1,8 +1,8 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using MonoModularNet.Infrastructure.DAL.Context;
 using MonoModularNet.Infrastructure.DAL.Repository;
+using MonoModularNet.Infrastructure.Shared.Common.Attribute;
 using MonoModularNet.Module.Auth.Domain.Model;
-using SharedKernel.Common.Attribute;
 
 namespace MonoModularNet.Module.Auth.Domain.Repository;
 

@@ -9,6 +9,7 @@
     <ItemGroup>
       <ProjectReference Include="..\MonoModularNet.Infrastructure.CQRS\MonoModularNet.Infrastructure.CQRS.csproj" />
       <ProjectReference Include="..\MonoModularNet.Infrastructure.DAL\MonoModularNet.Infrastructure.DAL.csproj" />
+      <ProjectReference Include="..\MonoModularNet.Infrastructure.MailService\MonoModularNet.Infrastructure.MailService.csproj" />
     </ItemGroup>
 
     <ItemGroup>
