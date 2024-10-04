@@ -27,6 +27,9 @@ public static class BootstrapDatabaseExtension
 
         // Add Unit Of Work
         services.AddUnitOfWork<ApplicationDbContext>();
+        
+        // Add Dapper Context
+        services.AddScoped(typeof(IDapperContext), typeof(DapperContext));
 
         return services;
     }
