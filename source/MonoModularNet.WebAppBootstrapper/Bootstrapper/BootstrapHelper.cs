@@ -34,6 +34,9 @@ public static class ApiBootstrapHelper
         // Hangfire
         services.AddBootstrapHangfire(configuration, environment);
         
+        // Redis cache
+        services.AddBootstrapCache(configuration, environment);
+        
         // Mail
         services.AddBootstrapMail(configuration, environment);
         

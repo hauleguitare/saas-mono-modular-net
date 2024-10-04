@@ -35,6 +35,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MonoModularNet.Infrastructu
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MonoModularNet.Infrastructure.MailService", "MonoModularNet.Infrastructure.MailService\MonoModularNet.Infrastructure.MailService.csproj", "{ABC1BA8C-C998-4302-AAAA-3B3462B55FA5}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MonoModularNet.Infrastructure.Cache", "MonoModularNet.Infrastructure.Cache\MonoModularNet.Infrastructure.Cache.csproj", "{F4FCBFD6-6471-45BE-9A84-81B53AD8E39D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -81,6 +83,10 @@ Global
 		{ABC1BA8C-C998-4302-AAAA-3B3462B55FA5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{ABC1BA8C-C998-4302-AAAA-3B3462B55FA5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{ABC1BA8C-C998-4302-AAAA-3B3462B55FA5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F4FCBFD6-6471-45BE-9A84-81B53AD8E39D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F4FCBFD6-6471-45BE-9A84-81B53AD8E39D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F4FCBFD6-6471-45BE-9A84-81B53AD8E39D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F4FCBFD6-6471-45BE-9A84-81B53AD8E39D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -96,5 +102,6 @@ Global
 		{4B13A934-4478-4246-8DE2-1EBE9CAFB373} = {D9074A23-FEEB-47EA-B066-BD3718980020}
 		{F391ACDD-1622-4A02-B0CC-9F0E2AB6DE2F} = {23DC4EEF-2B7F-4BA3-8849-38D038C2BB3E}
 		{ABC1BA8C-C998-4302-AAAA-3B3462B55FA5} = {23DC4EEF-2B7F-4BA3-8849-38D038C2BB3E}
+		{F4FCBFD6-6471-45BE-9A84-81B53AD8E39D} = {23DC4EEF-2B7F-4BA3-8849-38D038C2BB3E}
 	EndGlobalSection
 EndGlobal

@@ -1,6 +1,4 @@
-﻿using MonoModularNet.Infrastructure.MailService.Model;
-using MonoModularNet.Infrastructure.MailService.Service;
-using MonoModularNet.Module.Auth.Domain.SignUp.Command;
+﻿using MonoModularNet.Module.Auth.Domain.SignUp.Command;
 
 namespace MonoModularNet.Module.Auth.Domain.SignUp.Handler;
 
