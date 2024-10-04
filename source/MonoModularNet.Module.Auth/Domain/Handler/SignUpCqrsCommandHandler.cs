@@ -22,7 +22,7 @@ public class SignUpCqrsCommandHandler: CqrsCommandHandler<SignUpCqrsCommand>
         _userManager = userManager;
     }
 
-    public async override Task<CqrsResult> Handle(SignUpCqrsCommand request, CancellationToken cancellationToken)
+    public override async Task<CqrsResult> Handle(SignUpCqrsCommand request, CancellationToken cancellationToken)
     {
         var user = new ApplicationUser()
         {
@@ -36,7 +36,9 @@ public class SignUpCqrsCommandHandler: CqrsCommandHandler<SignUpCqrsCommand>
         {
             return new CqrsResult()
             {
-                Errors = result.Errors.Select(e => e.Description).ToArray()
+                IsSuccess = false,
+                Messages = result.Errors.Select(e => e.Description).ToArray(),
+                Errors = result.Errors.Select(e => e.Code).ToArray()
             };
         }
         

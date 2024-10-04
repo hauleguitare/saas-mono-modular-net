@@ -23,7 +23,12 @@ public class AuthController: ApiControllerBase
     public async Task<IActionResult> SignUp([FromBody] SignUpReq req)
     {
         var command = new SignUpCqrsCommand(email: req.Email, password: req.Password);
-        await _mediatorHandler.SendAsync(command);
+        var result = await _mediatorHandler.SendAsync(command);
+
+        if (!result.IsSuccess)
+        {
+            return new ApiBadRequestResult(result.Messages, result.Errors);
+        }
 
         return new ApiOkResult("Ok");
     }
