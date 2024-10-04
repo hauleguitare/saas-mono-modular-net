@@ -5,7 +5,7 @@ using MonoModularNet.Infrastructure.DAL.Identity;
 
 namespace MonoModularNet.Infrastructure.DAL.Context;
 
-public class ApplicationDbContext: IdentityDbContext<ApplicationUser, ApplicationRole, string>
+public partial class ApplicationDbContext: IdentityDbContext<ApplicationUser, ApplicationRole, string>
 {
     public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) :
         base(options)
