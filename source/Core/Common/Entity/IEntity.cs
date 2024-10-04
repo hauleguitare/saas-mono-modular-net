@@ -1,4 +1,4 @@
-﻿namespace Core.Entity;
+﻿namespace Core.Common.Entity;
 
 public interface IEntity
 {

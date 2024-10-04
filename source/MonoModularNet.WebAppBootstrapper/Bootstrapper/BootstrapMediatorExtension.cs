@@ -17,10 +17,10 @@ public static class BootstrapMediatorExtension
         .AddTransient(typeof(IPipelineBehavior<,>), typeof(FluentValidationPipeline<,>))
         .AddTransient<IMediatorHandler, MediatorHandler>();
         
-        services.AddMediatR(cfg =>
-        {
-            cfg.RegisterServicesFromAssemblyContaining(typeof(Startup));
-        });
+        // services.AddMediatR(cfg =>
+        // {
+        //     cfg.RegisterServicesFromAssemblyContaining(typeof(Startup));
+        // });
         
         return services;
     }

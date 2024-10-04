@@ -1,5 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations.Schema;
 using System.Text.Json.Serialization;
+using Core.Common.Entity;
 using SharedKernel.Common.Event;
 
 namespace Core.Entity;

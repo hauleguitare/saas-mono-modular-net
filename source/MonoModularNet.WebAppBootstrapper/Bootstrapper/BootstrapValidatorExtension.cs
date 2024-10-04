@@ -7,7 +7,7 @@ public static class BootstrapValidatorExtension
 {
     public static IServiceCollection AddBootstrapValidation(this IServiceCollection services, IConfiguration configuration, IWebHostEnvironment environment)
     {
-        services.AddValidatorsFromAssemblyContaining(typeof(Startup));
+        // services.AddValidatorsFromAssemblyContaining(typeof(Startup));
 
         return services;
     }

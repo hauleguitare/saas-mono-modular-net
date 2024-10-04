@@ -1,4 +1,6 @@
-﻿namespace Core.Entity;
+﻿using Core.Entity;
+
+namespace Core.Common.Entity;
 
 public class AuditableEntity: DefaultAuditableEntity
 {

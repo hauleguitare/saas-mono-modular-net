@@ -1,4 +1,5 @@
-﻿using Core.Entity;
+﻿using Core.Common.Entity;
+using Core.Entity;
 using MonoModularNet.Infrastructure.DAL.Context;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
