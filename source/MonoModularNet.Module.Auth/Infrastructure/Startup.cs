@@ -1,6 +1,8 @@
-﻿using Microsoft.AspNetCore.Hosting;
+﻿using FluentValidation;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using MonoModularNet.Module.Auth.Domain.SignUp.Command;
 
 namespace MonoModularNet.Module.Auth.Infrastructure;
 
