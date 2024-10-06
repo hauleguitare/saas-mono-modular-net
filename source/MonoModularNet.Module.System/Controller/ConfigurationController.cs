@@ -1,6 +1,4 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using MonoModularNet.Infrastructure.Shared.Common.Controller;
-using MonoModularNet.Module.System.Domain.CreateConfiguration;
+﻿using MonoModularNet.Module.System.Domain.CreateConfiguration;
 using MonoModularNet.Module.System.Domain.GetListConfiguration;
 
 namespace MonoModularNet.Module.System.Controller;
