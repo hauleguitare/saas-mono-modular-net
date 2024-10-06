@@ -3,18 +3,12 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using MimeKit;
+using MonoModularNet.Infrastructure.MailService.Abstraction;
 using MonoModularNet.Infrastructure.MailService.Model;
 using MonoModularNet.Infrastructure.MailService.Setting;
 using MonoModularNet.Infrastructure.Shared.Common.Attribute;
 
 namespace MonoModularNet.Infrastructure.MailService.Service;
-
-public interface IMailService
-{
-    public Task SendAsync(MailContent mailContent, CancellationToken cancellationToken = default);
-    public Task SendAsync(ICollection<string> sendTo, string subject, string html, CancellationToken cancellationToken = default);
-}
-
 
 
 [Injectable(InterfaceType = typeof(IMailService), Lifetime = ServiceLifetime.Transient)]

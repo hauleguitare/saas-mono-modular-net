@@ -1,6 +1,7 @@
 ﻿using System.Linq.Expressions;
 using Hangfire;
 using Microsoft.Extensions.DependencyInjection;
+using MonoModularNet.Infrastructure.Background.Abstraction;
 using MonoModularNet.Infrastructure.Shared.Common.Attribute;
 
 namespace MonoModularNet.Infrastructure.Background.Service;

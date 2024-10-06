@@ -1,6 +1,6 @@
 ﻿using System.Linq.Expressions;
 
-namespace MonoModularNet.Infrastructure.Background.Service;
+namespace MonoModularNet.Infrastructure.Background.Abstraction;
 
 public interface IBackgroundService
 {

@@ -26,7 +26,7 @@
       <ProjectReference Include="..\MonoModularNet.Infrastructure.Cache\MonoModularNet.Infrastructure.Cache.csproj" />
       <ProjectReference Include="..\MonoModularNet.Infrastructure.CQRS\MonoModularNet.Infrastructure.CQRS.csproj" />
       <ProjectReference Include="..\MonoModularNet.Infrastructure.DAL\MonoModularNet.Infrastructure.DAL.csproj" />
-      <ProjectReference Include="..\MonoModularNet.Infrastructure.MailService\MonoModularNet.Infrastructure.MailService.csproj" />
+      <ProjectReference Include="..\MonoModularNet.Infrastructure.MailToolKit\MonoModularNet.Infrastructure.MailToolKit.csproj" />
       <ProjectReference Include="..\MonoModularNet.Module.Auth\MonoModularNet.Module.Auth.csproj" />
       <ProjectReference Include="..\MonoModularNet.Module.System\MonoModularNet.Module.System.csproj" />
       <ProjectReference Include="..\SharedKernel\SharedKernel.csproj" />
