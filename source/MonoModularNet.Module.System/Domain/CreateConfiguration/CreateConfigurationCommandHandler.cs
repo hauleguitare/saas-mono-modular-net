@@ -6,10 +6,10 @@ namespace MonoModularNet.Module.System.Domain.CreateConfiguration;
 
 public class CreateConfigurationCommandHandler: CqrsCommandHandler<CreateConfigurationCommand>
 {
-    private readonly IEntityRepository<SystemConfiguration, int> _systemConfigurationRepo;
+    private readonly IEntityRepository<SystemEnvironment, int> _systemConfigurationRepo;
     private readonly IUnitOfWork _unitOfWork;
 
-    public CreateConfigurationCommandHandler(IEntityRepository<SystemConfiguration, int> systemConfigurationRepo, IUnitOfWork unitOfWork)
+    public CreateConfigurationCommandHandler(IEntityRepository<SystemEnvironment, int> systemConfigurationRepo, IUnitOfWork unitOfWork)
     {
         _systemConfigurationRepo = systemConfigurationRepo;
         _unitOfWork = unitOfWork;
@@ -17,10 +17,9 @@ public class CreateConfigurationCommandHandler: CqrsCommandHandler<CreateConfigu
 
     public override Task<CqrsResult> Handle(CreateConfigurationCommand request, CancellationToken cancellationToken)
     {
-        var newRow = new SystemConfiguration()
+        var newRow = new SystemEnvironment()
         {
             Key = request.Key,
-            Type = request.Type,
             Value = request.Value
         };
         _systemConfigurationRepo.AddAsync(newRow, cancellationToken);

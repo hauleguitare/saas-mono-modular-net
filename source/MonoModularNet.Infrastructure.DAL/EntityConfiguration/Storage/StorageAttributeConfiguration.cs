@@ -14,9 +14,6 @@ public class StorageAttributeConfiguration: IEntityTypeConfiguration<StorageAttr
 
         builder.Property(e => e.Name).HasColumnType("text").IsRequired();
         
-        builder.HasOne<StorageAttributeMetadata>(d => d.Metadata)
-            .WithOne(p => p.Attribute)
-            .HasForeignKey<StorageAttributeMetadata>(p => p.AttributeId)
-            .HasConstraintName("storage_attribute_metadata_id_storage_attribute_fk");
+        
     }
 }

@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using MonoModularNet.Infrastructure.DAL.Context;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
@@ -11,9 +12,11 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace MonoModularNet.Infrastructure.DAL.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20241009084625_Initial")]
+    partial class Initial
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -21,6 +24,22 @@ namespace MonoModularNet.Infrastructure.DAL.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 63);
 
             NpgsqlModelBuilderExtensions.UseIdentityByDefaultColumns(modelBuilder);
+
+            modelBuilder.HasSequence<int>("storage_attribute_id_seq");
+
+            modelBuilder.HasSequence<int>("storage_attribute_metadata_id_seq");
+
+            modelBuilder.HasSequence<int>("storage_entity_attribute_id_seq");
+
+            modelBuilder.HasSequence<int>("storage_entity_id_seq");
+
+            modelBuilder.HasSequence<int>("storage_entity_metadata_id_seq");
+
+            modelBuilder.HasSequence<int>("storage_value_id_seq");
+
+            modelBuilder.HasSequence<int>("system_environment_id_seq");
+
+            modelBuilder.HasSequence<int>("system_environment_metadata_id_seq");
 
             modelBuilder.Entity("ApplicationRoleApplicationUser", b =>
                 {
@@ -64,14 +83,14 @@ namespace MonoModularNet.Infrastructure.DAL.Migrations
                     b.Property<int>("AttributeId")
                         .HasColumnType("integer");
 
-                    b.Property<string>("AttributeType")
-                        .IsRequired()
-                        .HasColumnType("text");
-
                     b.Property<bool>("IsRequired")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("boolean")
                         .HasDefaultValue(false);
+
+                    b.Property<string>("Type")
+                        .IsRequired()
+                        .HasColumnType("text");
 
                     b.HasKey("Id")
                         .HasName("storage_attribute_metadata_pk");
@@ -109,13 +128,7 @@ namespace MonoModularNet.Infrastructure.DAL.Migrations
                     b.Property<int>("AttributeId")
                         .HasColumnType("integer");
 
-                    b.Property<int?>("AttributeId1")
-                        .HasColumnType("integer");
-
                     b.Property<int>("EntityId")
-                        .HasColumnType("integer");
-
-                    b.Property<int?>("EntityId1")
                         .HasColumnType("integer");
 
                     b.HasKey("Id")
@@ -123,11 +136,7 @@ namespace MonoModularNet.Infrastructure.DAL.Migrations
 
                     b.HasIndex("AttributeId");
 
-                    b.HasIndex("AttributeId1");
-
                     b.HasIndex("EntityId");
-
-                    b.HasIndex("EntityId1");
 
                     b.ToTable("StorageEntityAttributes");
                 });
@@ -177,18 +186,14 @@ namespace MonoModularNet.Infrastructure.DAL.Migrations
                     b.ToTable("StorageValues");
                 });
 
-            modelBuilder.Entity("Core.Entity.System.SystemConfiguration", b =>
+            modelBuilder.Entity("Core.Entity.System.SystemEnvironment", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("integer")
-                        .HasDefaultValueSql("nextval('systemconfiguration_id_seq'::regclass)");
+                        .HasDefaultValueSql("nextval('system_environment_id_seq'::regclass)");
 
                     b.Property<string>("Key")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.Property<string>("Type")
                         .IsRequired()
                         .HasColumnType("text");
 
@@ -196,9 +201,35 @@ namespace MonoModularNet.Infrastructure.DAL.Migrations
                         .HasColumnType("text");
 
                     b.HasKey("Id")
-                        .HasName("systemconfiguration_pk");
+                        .HasName("system_environment_pk");
 
-                    b.ToTable("SystemConfigurations");
+                    b.ToTable("SystemEnvironments");
+                });
+
+            modelBuilder.Entity("Core.Entity.System.SystemEnvironmentMetadata", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer")
+                        .HasDefaultValueSql("nextval('system_environment_metadata_id_seq'::regclass)");
+
+                    b.Property<int?>("EnvironmentId")
+                        .HasColumnType("integer");
+
+                    b.Property<bool>("IsRequired")
+                        .HasColumnType("boolean");
+
+                    b.Property<string>("Type")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.HasKey("Id")
+                        .HasName("system_environment_metadata_pk");
+
+                    b.HasIndex("EnvironmentId")
+                        .IsUnique();
+
+                    b.ToTable("SystemEnvironmentMetadata");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -521,24 +552,12 @@ namespace MonoModularNet.Infrastructure.DAL.Migrations
                         .IsRequired()
                         .HasConstraintName("storage_entity_attribute_attribute_id_storage_entity_fk");
 
-                    b.HasOne("Core.Entity.Storage.StorageAttribute", "Attribute")
-                        .WithMany()
-                        .HasForeignKey("AttributeId1");
-
                     b.HasOne("Core.Entity.Storage.StorageEntity", null)
                         .WithMany()
                         .HasForeignKey("EntityId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired()
                         .HasConstraintName("storage_entity_attribute_entity_id_storage_entity_fk");
-
-                    b.HasOne("Core.Entity.Storage.StorageEntity", "Entity")
-                        .WithMany()
-                        .HasForeignKey("EntityId1");
-
-                    b.Navigation("Attribute");
-
-                    b.Navigation("Entity");
                 });
 
             modelBuilder.Entity("Core.Entity.Storage.StorageEntityMetadata", b =>
@@ -561,6 +580,16 @@ namespace MonoModularNet.Infrastructure.DAL.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired()
                         .HasConstraintName("storage_value_entity_attribute_id_storage_entity_fk");
+                });
+
+            modelBuilder.Entity("Core.Entity.System.SystemEnvironmentMetadata", b =>
+                {
+                    b.HasOne("Core.Entity.System.SystemEnvironment", "Environment")
+                        .WithOne("Metadata")
+                        .HasForeignKey("Core.Entity.System.SystemEnvironmentMetadata", "EnvironmentId")
+                        .HasConstraintName("system_environment_metadata_system_environment_id_fk");
+
+                    b.Navigation("Environment");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -664,6 +693,11 @@ namespace MonoModularNet.Infrastructure.DAL.Migrations
                 });
 
             modelBuilder.Entity("Core.Entity.Storage.StorageEntity", b =>
+                {
+                    b.Navigation("Metadata");
+                });
+
+            modelBuilder.Entity("Core.Entity.System.SystemEnvironment", b =>
                 {
                     b.Navigation("Metadata");
                 });

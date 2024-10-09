@@ -12,10 +12,15 @@ public class StorageAttributeMetadataConfiguration: IEntityTypeConfiguration<Sto
 
         builder.Property(e => e.Id).HasDefaultValueSql("nextval('storage_attribute_metadata_id_seq'::regclass)");
 
-        builder.Property(e => e.AttributeType)
+        builder.Property(e => e.Type)
             .HasColumnType("text")
             .IsRequired();
 
         builder.Property(e => e.IsRequired).HasDefaultValue(false);
+        
+        builder.HasOne(d => d.Attribute)
+            .WithOne(p => p.Metadata)
+            .HasForeignKey<StorageAttributeMetadata>(p => p.AttributeId)
+            .HasConstraintName("storage_attribute_metadata_id_storage_attribute_fk");
     }
 }
