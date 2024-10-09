@@ -1,16 +1,21 @@
-﻿using MonoModularNet.Module.System.Domain.CreateEnvironmentVariable;
+﻿using MonoModularNet.Infrastructure.Shared.Common.Notification;
+using MonoModularNet.Module.System.Domain.CreateEnvironmentVariable;
 using MonoModularNet.Module.System.Domain.GetListConfiguration;
+using MonoModularNet.Module.System.Presentation.Model;
 
-namespace MonoModularNet.Module.System.Controller;
+namespace MonoModularNet.Module.System.Presentation.Controller;
 
 [Route("api/system/environment-variables")]
 public class EnvironmentVariablesController: ApiControllerBase
 {
     private readonly IMediatorHandler _mediatorHandler;
-
-    public EnvironmentVariablesController(IMediatorHandler mediatorHandler)
+    private readonly IMapper _mapper;
+    
+    
+    public EnvironmentVariablesController(IExceptionDomainEventQueue eventQueue, IMediatorHandler mediatorHandler, IMapper mapper) : base(eventQueue)
     {
         _mediatorHandler = mediatorHandler;
+        _mapper = mapper;
     }
 
     [HttpGet]
@@ -22,16 +27,17 @@ public class EnvironmentVariablesController: ApiControllerBase
     }
 
     [HttpPost]
-    public async Task<IActionResult> Add([FromBody] CreateEnvironmentVariableCommand command)
+    public async Task<IActionResult> Add([FromBody] CreateEnvironmentVariableReq req)
     {
+        var command = _mapper.Map<CreateEnvironmentVariableCommand>(req);
+        
         var result = await _mediatorHandler.SendAsync(command);
 
-        if (!result.IsSuccess)
-        {
-            return new ApiBadRequestResult();
-        }
+        ThrowIfCommandHasError();
         return new ApiOkResult();
     }
+
+    
 
     [HttpPatch]
     public Task<IActionResult> Patch()

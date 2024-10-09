@@ -13,6 +13,7 @@ public class CreateEnvironmentVariableCommandValidator: AbstractValidator<Create
     
     public CreateEnvironmentVariableCommandValidator()
     {
-        RuleFor(e => e.Type).Must(e => _type.Contains(e)).WithMessage("{PropertyName} invalid type.");
+        RuleFor(e => e.Metadata.Type)
+            .NotNull().NotEmpty().Must(e => _type.Contains(e)).WithMessage("{PropertyName} invalid type.");
     }
 }

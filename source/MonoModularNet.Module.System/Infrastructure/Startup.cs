@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using MonoModularNet.Module.System.Infrastructure.Mapper;
 
 namespace MonoModularNet.Module.System.Infrastructure;
 
@@ -17,6 +18,8 @@ public static class Startup
 
 
         services.AddValidatorsFromAssembly(typeof(Startup).Assembly);
+
+        services.AddMaps(typeof(Startup).Assembly);
         
         return services;
     }

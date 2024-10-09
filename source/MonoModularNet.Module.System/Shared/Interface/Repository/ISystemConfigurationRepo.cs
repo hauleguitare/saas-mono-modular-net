@@ -1,6 +1,6 @@
 ﻿using MonoModularNet.Module.System.Domain.Model;
 
-namespace MonoModularNet.Module.System.Domain.Repository;
+namespace MonoModularNet.Module.System.Shared.Interface.Repository;
 
 public interface ISystemConfigurationRepo
 {

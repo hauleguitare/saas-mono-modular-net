@@ -1,7 +1,7 @@
 ﻿using MonoModularNet.Infrastructure.DAL.Context;
 using MonoModularNet.Module.System.Domain.GetListConfiguration;
 using MonoModularNet.Module.System.Domain.Model;
-using MonoModularNet.Module.System.Domain.Repository;
+using MonoModularNet.Module.System.Shared.Interface.Repository;
 
 namespace MonoModularNet.Module.System.Domain.GetListEnvironment;
 
