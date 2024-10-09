@@ -11,6 +11,11 @@ public static class Startup
     public static IServiceCollection AddMonoModularNetModuleAuth(this IServiceCollection services,
         IConfiguration configuration, IWebHostEnvironment environment)
     {
+        services.AddMediatR(conf =>
+        {
+            conf.RegisterServicesFromAssembly(typeof(Startup).Assembly);
+        });
+        
         return services;
     }
 }

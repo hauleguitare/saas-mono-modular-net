@@ -1,5 +1,6 @@
 ﻿using MediatR;
 using MediatR.Pipeline;
+using MonoModularNet.Infrastructure.CQRS.Event;
 using MonoModularNet.Infrastructure.CQRS.ExceptionHandling;
 using MonoModularNet.Infrastructure.CQRS.Mediator;
 using MonoModularNet.Infrastructure.CQRS.Pipeline;
@@ -13,14 +14,15 @@ public static class BootstrapMediatorExtension
         IConfiguration configuration, IWebHostEnvironment environment)
     {
 
-        services.AddTransient(typeof(IRequestExceptionHandler<,,>), typeof(CqrsRequestExceptionHandler<,,>))
+        services.AddTransient(typeof(IRequestExceptionHandler<,,>), typeof(CqrsCommandExceptionHandler<,,>))
         .AddTransient(typeof(IPipelineBehavior<,>), typeof(FluentValidationPipeline<,>))
+        .AddTransient(typeof(INotificationHandler<ExceptionDomainEvent>), typeof(ExceptionDomainEventHandler))
         .AddTransient<IMediatorHandler, MediatorHandler>();
         
-        services.AddMediatR(cfg =>
-        {
-            cfg.RegisterServicesFromAssemblyContaining(typeof(Startup));
-        });
+        // services.AddMediatR(cfg =>
+        // {
+        //     cfg.RegisterServicesFromAssemblyContaining(typeof(Startup));
+        // });
         
         return services;
     }

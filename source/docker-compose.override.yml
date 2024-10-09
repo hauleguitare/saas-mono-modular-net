@@ -16,6 +16,19 @@ services:
       - postgres
     links:
       - postgres
+      - redis
+        
+  redis:
+    image: redislabs/redismod
+    ports:
+      - '6379:6379'
+    restart: unless-stopped
+  
+  redisinsight:
+    image: redislabs/redisinsight:latest
+    ports:
+      - '8000:8000'
+    restart: unless-stopped
   
   postgres:
     image: postgres

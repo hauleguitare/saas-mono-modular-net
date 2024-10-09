@@ -1,7 +1,7 @@
 ﻿using FluentValidation;
 using FluentValidation.Validators;
 
-namespace MonoModularNet.Infrastructure.CQRS.Pipeline;
+namespace MonoModularNet.Infrastructure.Shared.Common.Validation;
 
 public static class SetNonNullValidationExtension
 {

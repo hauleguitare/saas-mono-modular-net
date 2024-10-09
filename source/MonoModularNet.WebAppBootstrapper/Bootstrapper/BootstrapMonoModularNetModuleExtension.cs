@@ -1,5 +1,6 @@
 ﻿
 using MonoModularNet.Module.Auth.Infrastructure;
+using MonoModularNet.Module.System.Infrastructure;
 
 namespace MonoModularNet.WebAppBootstrapper.Bootstrapper;
 
@@ -9,7 +10,9 @@ public static class BootstrapMonoModularNetModuleExtension
         IConfiguration configuration, IWebHostEnvironment environment)
     {
         // Mono Modular Auth
-        services.AddMonoModularNetModuleAuth(configuration, environment);
+        services.AddMonoModularNetModuleAuth(configuration, environment)
+            .AddMonoModularNetModuleSystem(configuration, environment);
+        
         
         
         return services;
