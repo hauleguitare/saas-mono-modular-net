@@ -2,9 +2,9 @@
 
 namespace MonoModularNet.Module.System.Domain.GetListConfiguration;
 
-public class GetListConfigurationQuery: CqrsQuery<IReadOnlyList<ConfigurationRes>>
+public class GetListEnvironmentVariableQuery: CqrsQuery<IReadOnlyList<ConfigurationRes>>
 {
-    public GetListConfigurationQuery(string? orderBy, string? orderByColumn)
+    public GetListEnvironmentVariableQuery(string? orderBy, string? orderByColumn)
     {
         OrderBy = orderBy;
         OrderByColumn = orderByColumn;

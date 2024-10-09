@@ -1,21 +1,22 @@
 ﻿using Core.Entity.System;
 using MonoModularNet.Infrastructure.DAL.Repository;
 using MonoModularNet.Infrastructure.DAL.UnitOfWork;
+using MonoModularNet.Module.System.Domain.CreateEnvironmentVariable;
 
 namespace MonoModularNet.Module.System.Domain.CreateConfiguration;
 
-public class CreateConfigurationCommandHandler: CqrsCommandHandler<CreateConfigurationCommand>
+public class CreateEnvironmentCommandHandler: CqrsCommandHandler<CreateEnvironmentVariableCommand>
 {
     private readonly IEntityRepository<SystemEnvironment, int> _systemConfigurationRepo;
     private readonly IUnitOfWork _unitOfWork;
 
-    public CreateConfigurationCommandHandler(IEntityRepository<SystemEnvironment, int> systemConfigurationRepo, IUnitOfWork unitOfWork)
+    public CreateEnvironmentCommandHandler(IEntityRepository<SystemEnvironment, int> systemConfigurationRepo, IUnitOfWork unitOfWork)
     {
         _systemConfigurationRepo = systemConfigurationRepo;
         _unitOfWork = unitOfWork;
     }
 
-    public override Task<CqrsResult> Handle(CreateConfigurationCommand request, CancellationToken cancellationToken)
+    public override Task<CqrsResult> Handle(CreateEnvironmentVariableCommand request, CancellationToken cancellationToken)
     {
         var newRow = new SystemEnvironment()
         {

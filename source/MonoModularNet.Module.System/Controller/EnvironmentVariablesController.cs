@@ -1,14 +1,15 @@
 ﻿using MonoModularNet.Module.System.Domain.CreateConfiguration;
+using MonoModularNet.Module.System.Domain.CreateEnvironmentVariable;
 using MonoModularNet.Module.System.Domain.GetListConfiguration;
 
 namespace MonoModularNet.Module.System.Controller;
 
-[Route("api/system/configurations")]
-public class ConfigurationController: ApiControllerBase
+[Route("api/system/environment-variables")]
+public class EnvironmentVariablesController: ApiControllerBase
 {
     private readonly IMediatorHandler _mediatorHandler;
 
-    public ConfigurationController(IMediatorHandler mediatorHandler)
+    public EnvironmentVariablesController(IMediatorHandler mediatorHandler)
     {
         _mediatorHandler = mediatorHandler;
     }
@@ -16,13 +17,13 @@ public class ConfigurationController: ApiControllerBase
     [HttpGet]
     public async Task<IActionResult> Get([FromQuery] OrderByQueryParameter queryParameter)
     {
-        var result = await _mediatorHandler.SendAsync(new GetListConfigurationQuery(orderByColumn: queryParameter.OrderByColumn, orderBy: queryParameter.OrderBy));
+        var result = await _mediatorHandler.SendAsync(new GetListEnvironmentVariableQuery(orderByColumn: queryParameter.OrderByColumn, orderBy: queryParameter.OrderBy));
 
         return new ApiOkResult(result);
     }
 
     [HttpPost]
-    public async Task<IActionResult> Add([FromBody] CreateConfigurationCommand command)
+    public async Task<IActionResult> Add([FromBody] CreateEnvironmentVariableCommand command)
     {
         var result = await _mediatorHandler.SendAsync(command);
 

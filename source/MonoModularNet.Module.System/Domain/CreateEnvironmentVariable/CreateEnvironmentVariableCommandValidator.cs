@@ -1,8 +1,8 @@
 ﻿using FluentValidation;
 
-namespace MonoModularNet.Module.System.Domain.CreateConfiguration;
+namespace MonoModularNet.Module.System.Domain.CreateEnvironmentVariable;
 
-public class CreateConfigurationCommandValidator: AbstractValidator<CreateConfigurationCommand>
+public class CreateEnvironmentVariableCommandValidator: AbstractValidator<CreateEnvironmentVariableCommand>
 {
     private readonly string[] _type = new[]
     {
@@ -11,7 +11,7 @@ public class CreateConfigurationCommandValidator: AbstractValidator<CreateConfig
         "System.Decimal"
     };
     
-    public CreateConfigurationCommandValidator()
+    public CreateEnvironmentVariableCommandValidator()
     {
         RuleFor(e => e.Type).Must(e => _type.Contains(e)).WithMessage("{PropertyName} invalid type.");
     }
