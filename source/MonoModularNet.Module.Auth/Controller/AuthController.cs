@@ -1,4 +1,5 @@
-﻿using MonoModularNet.Module.Auth.Domain.Model;
+﻿using MonoModularNet.Infrastructure.Shared.Common.Notification;
+using MonoModularNet.Module.Auth.Domain.Model;
 using MonoModularNet.Module.Auth.Domain.SignUp.Command;
 
 namespace MonoModularNet.Module.Auth.Controller;
@@ -8,11 +9,11 @@ public class AuthController: ApiControllerBase
 {
     private readonly IMediatorHandler _mediatorHandler;
 
-    public AuthController(IMediatorHandler mediatorHandler)
+    public AuthController(IExceptionDomainEventQueue eventQueue, IMediatorHandler mediatorHandler) : base(eventQueue)
     {
         _mediatorHandler = mediatorHandler;
     }
-
+    
     [HttpPost("sign-in")]
     public Task<IActionResult> SignIn([FromBody] SignInReq req)
     {
