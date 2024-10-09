@@ -1,5 +1,4 @@
-﻿using MonoModularNet.Module.System.Domain.CreateConfiguration;
-using MonoModularNet.Module.System.Domain.CreateEnvironmentVariable;
+﻿using MonoModularNet.Module.System.Domain.CreateEnvironmentVariable;
 using MonoModularNet.Module.System.Domain.GetListConfiguration;
 
 namespace MonoModularNet.Module.System.Controller;

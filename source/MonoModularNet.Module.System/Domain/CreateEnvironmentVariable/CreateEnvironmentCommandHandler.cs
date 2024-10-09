@@ -1,9 +1,8 @@
 ﻿using Core.Entity.System;
 using MonoModularNet.Infrastructure.DAL.Repository;
 using MonoModularNet.Infrastructure.DAL.UnitOfWork;
-using MonoModularNet.Module.System.Domain.CreateEnvironmentVariable;
 
-namespace MonoModularNet.Module.System.Domain.CreateConfiguration;
+namespace MonoModularNet.Module.System.Domain.CreateEnvironmentVariable;
 
 public class CreateEnvironmentCommandHandler: CqrsCommandHandler<CreateEnvironmentVariableCommand>
 {
@@ -23,6 +22,7 @@ public class CreateEnvironmentCommandHandler: CqrsCommandHandler<CreateEnvironme
             Key = request.Key,
             Value = request.Value
         };
+        
         _systemConfigurationRepo.AddAsync(newRow, cancellationToken);
 
         _unitOfWork.SaveChanges();
