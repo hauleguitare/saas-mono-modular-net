@@ -1,10 +1,16 @@
-﻿namespace Core.Entity.System;
+﻿using Core.Common.Entity;
 
-public class SystemEnvironmentMetadata: BaseEntity<int>
+namespace Core.Entity.System;
+
+public class SystemEnvironmentMetadata: ValueObject
 {
-    public int? EnvironmentId { get; set; }
     public string Type { get; set; } = null!;
     
     public bool IsRequired { get; set; } = false;
     public virtual SystemEnvironment? Environment { get; set; }
+    protected override IEnumerable<object?> GetEqualityComponents()
+    {
+        yield return Type;
+        yield return IsRequired;
+    }
 }

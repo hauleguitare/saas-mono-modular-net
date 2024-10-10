@@ -13,10 +13,8 @@ public class StorageEntityConfiguration: IEntityTypeConfiguration<StorageEntity>
         builder.Property(e => e.Id).HasDefaultValueSql("nextval('storage_entity_id_seq'::regclass)");
         
         builder.Property(e => e.Name).HasColumnType("text").IsRequired();
-        
-        builder.HasOne<StorageEntityMetadata>(d => d.Metadata)
-            .WithOne(p => p.Entity)
-            .HasForeignKey<StorageEntityMetadata>(p => p.EntityId)
-            .HasConstraintName("storage_entity_metadata_id_storage_entity_fk");
+
+        builder.OwnsOne(p => p.Metadata)
+            .Property(p => p.IsTemplate).HasColumnName("Metadata_IsTemplate");
     }
 }

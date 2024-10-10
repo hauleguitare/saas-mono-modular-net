@@ -1,10 +1,16 @@
-﻿namespace Core.Entity.Storage;
+﻿using Core.Common.Entity;
 
-public class StorageAttributeMetadata: BaseEntity<int>
+namespace Core.Entity.Storage;
+
+public class StorageAttributeMetadata: ValueObject
 {
-    public int AttributeId { get; set; }
     public string Type { get; set; } = null!;
     public bool IsRequired { get; set; } = false;
     
     public virtual StorageAttribute? Attribute { get; set; }
+    protected override IEnumerable<object?> GetEqualityComponents()
+    {
+        yield return Type;
+        yield return IsRequired;
+    }
 }

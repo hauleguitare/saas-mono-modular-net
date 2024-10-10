@@ -11,15 +11,13 @@ public partial class ApplicationDbContext: IdentityDbContext<ApplicationUser, Ap
 {
     // ------ System ------ //
     public virtual DbSet<SystemEnvironment> SystemEnvironments { get; set; }
-    public virtual DbSet<SystemEnvironmentMetadata> SystemEnvironmentMetadata { get; set; }
 
     // ------ Storage ------ //
     public virtual DbSet<StorageEntity> StorageEntities { get; set; }
     public virtual DbSet<StorageAttribute> StorageAttributes { get; set; }
     public virtual DbSet<StorageEntityAttribute> StorageEntityAttributes { get; set; }
     public virtual DbSet<StorageValue> StorageValues { get; set; }
-    public virtual DbSet<StorageEntityMetadata> StorageEntityMetadata { get; set; }
-    public virtual DbSet<StorageAttributeMetadata> StorageAttributeMetadata { get; set; }
+    // ------ Storage ------ //
     
     public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) :
         base(options)
@@ -30,12 +28,9 @@ public partial class ApplicationDbContext: IdentityDbContext<ApplicationUser, Ap
         builder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
 
         builder.HasSequence<int>("system_environment_id_seq").IncrementsBy(1);
-        builder.HasSequence<int>("system_environment_metadata_id_seq").IncrementsBy(1);
         builder.HasSequence<int>("storage_attribute_id_seq").IncrementsBy(1);
-        builder.HasSequence<int>("storage_attribute_metadata_id_seq").IncrementsBy(1);
         builder.HasSequence<int>("storage_entity_attribute_id_seq").IncrementsBy(1);
         builder.HasSequence<int>("storage_entity_id_seq").IncrementsBy(1);
-        builder.HasSequence<int>("storage_entity_metadata_id_seq").IncrementsBy(1);
         builder.HasSequence<int>("storage_value_id_seq").IncrementsBy(1);
         
         base.OnModelCreating(builder);

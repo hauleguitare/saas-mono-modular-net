@@ -13,7 +13,11 @@ public class StorageAttributeConfiguration: IEntityTypeConfiguration<StorageAttr
         builder.Property(e => e.Id).HasDefaultValueSql("nextval('storage_attribute_id_seq'::regclass)");
 
         builder.Property(e => e.Name).HasColumnType("text").IsRequired();
+
+        builder.OwnsOne(e => e.Metadata)
+            .Property(p => p.IsRequired).HasColumnName("Metadata_IsRequired");
         
-        
+        builder.OwnsOne(e => e.Metadata)
+            .Property(p => p.Type).HasColumnName("Metadata_Type");
     }
 }

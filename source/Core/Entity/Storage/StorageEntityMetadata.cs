@@ -1,9 +1,13 @@
-﻿namespace Core.Entity.Storage;
+﻿using Core.Common.Entity;
 
-public class StorageEntityMetadata: BaseEntity<int>
+namespace Core.Entity.Storage;
+
+public class StorageEntityMetadata: ValueObject
 {
-    public int EntityId { get; set; }
     public bool IsTemplate { get; set; } = false;
-    
     public virtual StorageEntity? Entity { get; set; }
+    protected override IEnumerable<object?> GetEqualityComponents()
+    {
+        yield return IsTemplate;
+    }
 }

@@ -13,5 +13,11 @@ public class SystemEnvironmentConfiguration: IEntityTypeConfiguration<SystemEnvi
         builder.HasIndex(e => e.Key).IsUnique().HasDatabaseName("system_environments_uk");
 
         builder.Property(e => e.Id).HasDefaultValueSql("nextval('system_environment_id_seq'::regclass)");
+        
+        builder.OwnsOne(e => e.Metadata)
+            .Property(p => p.IsRequired).HasColumnName("Metadata_IsRequired");
+        
+        builder.OwnsOne(e => e.Metadata)
+            .Property(p => p.Type).HasColumnName("Metadata_Type");
     }
 }

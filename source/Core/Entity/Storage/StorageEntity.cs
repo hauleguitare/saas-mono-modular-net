@@ -9,5 +9,5 @@ public class StorageEntity: BaseEntity<int>
     
     public string Name { get; set; } = null!;
     
-    public virtual StorageEntityMetadata? Metadata { get; set; }
+    public StorageEntityMetadata Metadata { get; set; }
 }
