@@ -11,7 +11,7 @@ public interface IEntityRepository<TEntity, in TKey>: IRepository where TEntity 
 {
     public IQueryable<TEntity> AsQueryable();
     public TEntity? GetById(TKey id);
-    public Task<TEntity?> GetByIdAsync(TKey id, CancellationToken token);
+    public Task<TEntity?> GetByIdAsync(TKey id, CancellationToken token = default);
     void Add(TEntity entity);
     Task AddAsync(TEntity entity, CancellationToken cancellationToken = default);
     void AddRange(ICollection<TEntity> entities);
@@ -43,7 +43,7 @@ public class EntityRepository<TEntity, TKey> : IEntityRepository<TEntity, TKey> 
         return _entity.Find(id);
     }
 
-    public virtual Task<TEntity?> GetByIdAsync(TKey id, CancellationToken token)
+    public virtual Task<TEntity?> GetByIdAsync(TKey id, CancellationToken token = default)
     {
         return _entity.FindAsync(id).AsTask();
     }

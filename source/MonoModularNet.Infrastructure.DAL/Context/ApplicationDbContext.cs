@@ -4,6 +4,7 @@ using Core.Entity.System;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using MonoModularNet.Infrastructure.DAL.Identity;
+using MonoModularNet.Infrastructure.DAL.Seed;
 
 namespace MonoModularNet.Infrastructure.DAL.Context;
 
@@ -27,12 +28,17 @@ public partial class ApplicationDbContext: IdentityDbContext<ApplicationUser, Ap
     {
         builder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
 
+        base.OnModelCreating(builder);
+
         builder.HasSequence<int>("system_environment_id_seq").IncrementsBy(1);
         builder.HasSequence<int>("storage_attribute_id_seq").IncrementsBy(1);
         builder.HasSequence<int>("storage_entity_attribute_id_seq").IncrementsBy(1);
         builder.HasSequence<int>("storage_entity_id_seq").IncrementsBy(1);
         builder.HasSequence<int>("storage_value_id_seq").IncrementsBy(1);
-        
-        base.OnModelCreating(builder);
+
+        builder.SeedApplicationUser("admin@root.com", "123456");
+        builder.SeedApplicationRoles();
+        builder.SeedApplicationRoleClaims();
+        builder.SeedApplicationUserRole("owner","owner");
     }
 }
