@@ -28,11 +28,6 @@ public class EntityRepository<TEntity, TKey> : IEntityRepository<TEntity, TKey> 
 {
     private readonly DbSet<TEntity> _entity;
 
-    // public EntityRepository(ApplicationDbContext context)
-    // {
-    //     _entity = context.Instance.Set<TEntity>();
-    // }
-    
     public EntityRepository(ApplicationDbContext dbContext)
     {
         _entity = dbContext.Set<TEntity>();
