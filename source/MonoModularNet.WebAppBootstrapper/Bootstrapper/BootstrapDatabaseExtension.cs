@@ -1,7 +1,9 @@
-﻿using MonoModularNet.Infrastructure.DAL.Context;
+﻿using Microsoft.EntityFrameworkCore;
+using MonoModularNet.Infrastructure.DAL.Context;
+using MonoModularNet.Infrastructure.DAL.Hasher;
+using MonoModularNet.Infrastructure.DAL.Identity;
 using MonoModularNet.Infrastructure.DAL.Repository;
 using MonoModularNet.Infrastructure.DAL.UnitOfWork;
-using Microsoft.EntityFrameworkCore;
 
 namespace MonoModularNet.WebAppBootstrapper.Bootstrapper;
 
@@ -27,6 +29,12 @@ public static class BootstrapDatabaseExtension
 
         // Add Unit Of Work
         services.AddUnitOfWork<ApplicationDbContext>();
+        
+        // Add ASP.NET Core Identity
+        services.AddBootstrapIdentity(configuration, environment);
+        
+        // Add Application User Password Hasher
+        services.AddTransient(typeof(IApplicationPasswordHasher), typeof(ApplicationPasswordHasher));
         
         // Add Dapper Context
         services.AddScoped(typeof(IDapperContext), typeof(DapperContext));
@@ -88,6 +96,18 @@ public static class BootstrapDatabaseExtension
         ServiceLifetime lifetime = ServiceLifetime.Scoped) where TContext : DbContext
     {
         var repoType = typeof(IEntityRepository<,>);
+        return services;
+    }
+    
+    private static IServiceCollection AddBootstrapIdentity(this IServiceCollection services,
+        IConfiguration configuration, IWebHostEnvironment environment)
+    {
+        services.AddIdentityCore<ApplicationUser>(opts =>
+            {
+            })
+            .AddRoles<ApplicationRole>()
+            .AddEntityFrameworkStores<ApplicationDbContext>();
+        
         return services;
     }
 }

@@ -12,30 +12,30 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <PackageReference Include="Hangfire.InMemory" Version="1.0.0" />
-        <PackageReference Include="Hangfire.PostgreSql" Version="1.20.9" />
+        <PackageReference Include="Hangfire.InMemory" Version="1.0.0"/>
+        <PackageReference Include="Hangfire.PostgreSql" Version="1.20.9"/>
         <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="8.0.8">
-          <PrivateAssets>all</PrivateAssets>
-          <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+            <PrivateAssets>all</PrivateAssets>
+            <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
         </PackageReference>
-        <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.21.0" />
-        <PackageReference Include="Swashbuckle.AspNetCore" Version="6.8.0" />
+        <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.21.0"/>
+        <PackageReference Include="Swashbuckle.AspNetCore" Version="6.8.0"/>
     </ItemGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\MonoModularNet.Infrastructure.Cache\MonoModularNet.Infrastructure.Cache.csproj" />
-      <ProjectReference Include="..\MonoModularNet.Infrastructure.CQRS\MonoModularNet.Infrastructure.CQRS.csproj" />
-      <ProjectReference Include="..\MonoModularNet.Infrastructure.DAL\MonoModularNet.Infrastructure.DAL.csproj" />
-      <ProjectReference Include="..\MonoModularNet.Infrastructure.MailToolKit\MonoModularNet.Infrastructure.MailToolKit.csproj" />
-      <ProjectReference Include="..\MonoModularNet.Module.Auth\MonoModularNet.Module.Auth.csproj" />
-      <ProjectReference Include="..\MonoModularNet.Module.System\MonoModularNet.Module.System.csproj" />
-      <ProjectReference Include="..\SharedKernel\SharedKernel.csproj" />
+        <ProjectReference Include="..\MonoModularNet.Infrastructure.Cache\MonoModularNet.Infrastructure.Cache.csproj"/>
+        <ProjectReference Include="..\MonoModularNet.Infrastructure.CQRS\MonoModularNet.Infrastructure.CQRS.csproj"/>
+        <ProjectReference Include="..\MonoModularNet.Infrastructure.DAL\MonoModularNet.Infrastructure.DAL.csproj"/>
+        <ProjectReference Include="..\MonoModularNet.Infrastructure.MailToolKit\MonoModularNet.Infrastructure.MailToolKit.csproj"/>
+        <ProjectReference Include="..\MonoModularNet.Module.Auth\MonoModularNet.Module.Auth.csproj"/>
+        <ProjectReference Include="..\MonoModularNet.Module.System\MonoModularNet.Module.System.csproj"/>
+        <ProjectReference Include="..\SharedKernel\SharedKernel.csproj"/>
     </ItemGroup>
 
     <ItemGroup>
-      <Content Include="..\.dockerignore">
-        <Link>.dockerignore</Link>
-      </Content>
+        <Content Include="..\.dockerignore">
+            <Link>.dockerignore</Link>
+        </Content>
     </ItemGroup>
 
 </Project>

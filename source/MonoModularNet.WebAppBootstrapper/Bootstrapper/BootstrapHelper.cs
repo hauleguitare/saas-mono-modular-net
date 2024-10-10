@@ -15,9 +15,6 @@ public static class ApiBootstrapHelper
         // Add Authorization Ccore
         services.AddBootstrapAuthorization(configuration, environment);
 
-        // Add Identity
-        services.AddBootstrapIdentity(configuration, environment);
-        
         // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
         services.AddEndpointsApiExplorer();
         services.AddSwaggerGen();
