@@ -9,7 +9,7 @@ public class AuthController: ApiControllerBase
 {
     private readonly IMediatorHandler _mediatorHandler;
 
-    public AuthController(IExceptionDomainEventQueue eventQueue, IMediatorHandler mediatorHandler) : base(eventQueue)
+    public AuthController(IDomainExceptionMessageEventQueue eventQueue, IMediatorHandler mediatorHandler) : base(eventQueue)
     {
         _mediatorHandler = mediatorHandler;
     }
