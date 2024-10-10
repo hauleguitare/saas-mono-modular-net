@@ -7,15 +7,13 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\MonoModularNet.Infrastructure.CQRS\MonoModularNet.Infrastructure.CQRS.csproj" />
-      <ProjectReference Include="..\MonoModularNet.Infrastructure.DAL\MonoModularNet.Infrastructure.DAL.csproj" />
-      <ProjectReference Include="..\MonoModularNet.Infrastructure.MailToolKit\MonoModularNet.Infrastructure.MailToolKit.csproj" />
+        <ProjectReference Include="..\MonoModularNet.Infrastructure.CQRS\MonoModularNet.Infrastructure.CQRS.csproj"/>
+        <ProjectReference Include="..\MonoModularNet.Infrastructure.DAL\MonoModularNet.Infrastructure.DAL.csproj"/>
+        <ProjectReference Include="..\MonoModularNet.Infrastructure.MailToolKit\MonoModularNet.Infrastructure.MailToolKit.csproj"/>
     </ItemGroup>
 
     <ItemGroup>
-      <Folder Include="Domain\Handler\" />
-      <Folder Include="Domain\Service\" />
-      <Folder Include="Infrastructure\Mapper\" />
+        <Folder Include="Domain\Handler\"/>
     </ItemGroup>
 
 </Project>
