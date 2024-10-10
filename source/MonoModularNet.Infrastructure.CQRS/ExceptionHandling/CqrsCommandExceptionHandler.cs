@@ -1,4 +1,6 @@
-﻿using MediatR.Pipeline;
+﻿using Core.Exception;
+using MediatR.Pipeline;
+using Microsoft.AspNetCore.Hosting;
 using MonoModularNet.Infrastructure.CQRS.Command;
 using MonoModularNet.Infrastructure.CQRS.Event;
 using MonoModularNet.Infrastructure.CQRS.Mediator;
@@ -9,40 +11,32 @@ namespace MonoModularNet.Infrastructure.CQRS.ExceptionHandling;
 public class CqrsCommandExceptionHandler<TRequest, TResponse, TException>: IRequestExceptionHandler<TRequest, TResponse, TException>
 where TRequest : ICqrsCommand, new()
 where TResponse : ICqrsResult, new()
-where TException : Exception
+where TException : DomainException
 {
     private readonly IMediatorHandler _mediatorHandler;
+    private readonly IWebHostEnvironment _environment;
 
-    public CqrsCommandExceptionHandler(IMediatorHandler mediatorHandler)
+    public CqrsCommandExceptionHandler(IMediatorHandler mediatorHandler, IWebHostEnvironment environment)
     {
         _mediatorHandler = mediatorHandler;
+        _environment = environment;
     }
 
     public Task Handle(TRequest request, TException exception, RequestExceptionHandlerState<TResponse> state,
         CancellationToken cancellationToken)
     {
-        
-        HandleCatchExceptionAsync(exception);
+        _mediatorHandler.PublishAsync(
+            DomainExceptionEvent.CreateExceptionDomainEvent(null, null, exception), cancellationToken);
         
         state.SetHandled(new TResponse()
         {
-            IsSuccess = false
+            IsSuccess = false,
+            Errors = exception.Errors,
+            Messages = exception.Messages
         });
         
         return Task.CompletedTask;
     }
 
-
-    private Task HandleCatchExceptionAsync(Exception exception)
-    {
-        switch (exception)
-        {
-            case NotImplementedException:
-                _mediatorHandler.PublishAsync(
-                    ExceptionDomainEvent.CreateExceptionDomainEvent(null, null));
-                break;
-        }
-
-        return Task.CompletedTask;
-    }
+    
 }

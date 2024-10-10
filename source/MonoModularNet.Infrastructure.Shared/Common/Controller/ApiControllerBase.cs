@@ -7,9 +7,9 @@ namespace MonoModularNet.Infrastructure.Shared.Common.Controller;
 [ApiController]
 public abstract class ApiControllerBase: ControllerBase
 {
-    private readonly IExceptionDomainEventQueue _eventQueue;
+    private readonly IDomainExceptionMessageEventQueue _eventQueue;
 
-    protected ApiControllerBase(IExceptionDomainEventQueue eventQueue)
+    protected ApiControllerBase(IDomainExceptionMessageEventQueue eventQueue)
     {
         _eventQueue = eventQueue;
     }

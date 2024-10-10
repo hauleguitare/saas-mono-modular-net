@@ -3,19 +3,19 @@ using MonoModularNet.Infrastructure.Shared.Common.Notification;
 
 namespace MonoModularNet.Infrastructure.CQRS.Event;
 
-public class ExceptionDomainEventHandler: INotificationHandler<ExceptionDomainEvent>
+public class DomainExceptionEventHandler: INotificationHandler<DomainExceptionEvent>
 {
-    private readonly IExceptionDomainEventQueue _queue;
+    private readonly IDomainExceptionMessageEventQueue _queue;
 
-    public ExceptionDomainEventHandler(IExceptionDomainEventQueue queue)
+    public DomainExceptionEventHandler(IDomainExceptionMessageEventQueue queue)
     {
         _queue = queue;
     }
     
 
-    public Task Handle(ExceptionDomainEvent notification, CancellationToken cancellationToken)
+    public Task Handle(DomainExceptionEvent notification, CancellationToken cancellationToken)
     {
-        _queue.Enqueue(new ExceptionDomain()
+        _queue.Enqueue(new DomainExceptionMessage()
         {
             Id = Guid.NewGuid(),
             Errors = notification.Errors,

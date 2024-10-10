@@ -16,7 +16,7 @@ public static class BootstrapMediatorExtension
 
         services.AddTransient(typeof(IRequestExceptionHandler<,,>), typeof(CqrsCommandExceptionHandler<,,>))
         .AddTransient(typeof(IPipelineBehavior<,>), typeof(FluentValidationPipeline<,>))
-        .AddTransient(typeof(INotificationHandler<ExceptionDomainEvent>), typeof(ExceptionDomainEventHandler))
+        .AddTransient(typeof(INotificationHandler<DomainExceptionEvent>), typeof(DomainExceptionEventHandler))
         .AddTransient<IMediatorHandler, MediatorHandler>();
         
         // services.AddMediatR(cfg =>

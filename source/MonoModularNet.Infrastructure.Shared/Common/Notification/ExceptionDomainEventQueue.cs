@@ -3,7 +3,7 @@ using MonoModularNet.Infrastructure.Shared.Common.Attribute;
 
 namespace MonoModularNet.Infrastructure.Shared.Common.Notification;
 
-public class ExceptionDomain
+public class DomainExceptionMessage
 {
     public Guid Id { get; set; }
     public string[]? Errors { get; set; }
@@ -11,30 +11,30 @@ public class ExceptionDomain
 }
 
 
-public interface IExceptionDomainEventQueue : IDisposable
+public interface IDomainExceptionMessageEventQueue : IDisposable
 {
-    void Enqueue(ExceptionDomain exceptionDomain);
+    void Enqueue(DomainExceptionMessage domainExceptionMessage);
 
     bool HasException();
 
-    ExceptionDomain Dequeue();
+    DomainExceptionMessage Dequeue();
 
     void Clear();
 }
 
-[Injectable(InterfaceType = typeof(IExceptionDomainEventQueue), Lifetime = ServiceLifetime.Scoped)]
-public class ExceptionDomainEventQueue: IExceptionDomainEventQueue
+[Injectable(InterfaceType = typeof(IDomainExceptionMessageEventQueue), Lifetime = ServiceLifetime.Scoped)]
+public class DomainExceptionMessageEventQueue: IDomainExceptionMessageEventQueue
 {
-    private readonly Queue<ExceptionDomain> _exceptionQueue = new Queue<ExceptionDomain>();
+    private readonly Queue<DomainExceptionMessage> _exceptionQueue = new Queue<DomainExceptionMessage>();
     
     public void Dispose()
     {
         GC.SuppressFinalize(this);
     }
 
-    public void Enqueue(ExceptionDomain exceptionDomain)
+    public void Enqueue(DomainExceptionMessage domainExceptionMessage)
     {
-        _exceptionQueue.Enqueue(exceptionDomain);
+        _exceptionQueue.Enqueue(domainExceptionMessage);
     }
 
     public bool HasException()
@@ -42,7 +42,7 @@ public class ExceptionDomainEventQueue: IExceptionDomainEventQueue
         return _exceptionQueue.Count > 0;
     }
 
-    public ExceptionDomain Dequeue()
+    public DomainExceptionMessage Dequeue()
     {
         return _exceptionQueue.Dequeue();
     }
