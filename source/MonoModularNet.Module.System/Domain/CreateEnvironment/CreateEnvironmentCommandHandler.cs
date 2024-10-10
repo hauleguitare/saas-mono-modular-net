@@ -1,6 +1,6 @@
-﻿namespace MonoModularNet.Module.System.Domain.CreateEnvironmentVariable;
+﻿namespace MonoModularNet.Module.System.Domain.CreateEnvironment;
 
-public class CreateEnvironmentCommandHandler: CqrsCommandHandler<CreateEnvironmentVariableCommand>
+public class CreateEnvironmentCommandHandler: CqrsCommandHandler<CreateEnvironmentCommand>
 {
     private readonly IEntityRepository<SystemEnvironment, int> _systemConfigurationRepo;
     private readonly IUnitOfWork _unitOfWork;
@@ -13,7 +13,7 @@ public class CreateEnvironmentCommandHandler: CqrsCommandHandler<CreateEnvironme
         _mapper = mapper;
     }
 
-    public override Task<CqrsResult> Handle(CreateEnvironmentVariableCommand request, CancellationToken cancellationToken)
+    public override Task<CqrsResult> Handle(CreateEnvironmentCommand request, CancellationToken cancellationToken)
     {
         var newRow = _mapper.Map<SystemEnvironment>(request);
 

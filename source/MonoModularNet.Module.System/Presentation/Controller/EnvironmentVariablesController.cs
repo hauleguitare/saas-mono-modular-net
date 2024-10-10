@@ -1,6 +1,9 @@
 ﻿using MonoModularNet.Infrastructure.Shared.Common.Notification;
-using MonoModularNet.Module.System.Domain.CreateEnvironmentVariable;
-using MonoModularNet.Module.System.Domain.GetListConfiguration;
+using MonoModularNet.Module.System.Domain.CreateEnvironment;
+using MonoModularNet.Module.System.Domain.DeleteEnvironment;
+using MonoModularNet.Module.System.Domain.GetEnvironmentById;
+using MonoModularNet.Module.System.Domain.GetListEnvironment;
+using MonoModularNet.Module.System.Domain.PatchUpdateEnvironment;
 using MonoModularNet.Module.System.Presentation.Model;
 
 namespace MonoModularNet.Module.System.Presentation.Controller;
@@ -12,7 +15,7 @@ public class EnvironmentVariablesController: ApiControllerBase
     private readonly IMapper _mapper;
     
     
-    public EnvironmentVariablesController(IExceptionDomainEventQueue eventQueue, IMediatorHandler mediatorHandler, IMapper mapper) : base(eventQueue)
+    public EnvironmentVariablesController(IDomainExceptionMessageEventQueue eventQueue, IMediatorHandler mediatorHandler, IMapper mapper) : base(eventQueue)
     {
         _mediatorHandler = mediatorHandler;
         _mapper = mapper;
@@ -25,11 +28,19 @@ public class EnvironmentVariablesController: ApiControllerBase
 
         return new ApiOkResult(result);
     }
+    
+    [HttpGet("{id}")]
+    public async Task<IActionResult> GetById(int id)
+    {
+        var result = await _mediatorHandler.SendAsync(new GetEnvironmentByIdQuery(id));
+
+        return new ApiOkResult(result);
+    }
 
     [HttpPost]
-    public async Task<IActionResult> Add([FromBody] CreateEnvironmentVariableReq req)
+    public async Task<IActionResult> Add([FromBody] CreateEnvironmentReq req)
     {
-        var command = _mapper.Map<CreateEnvironmentVariableCommand>(req);
+        var command = _mapper.Map<CreateEnvironmentCommand>(req);
         
         var result = await _mediatorHandler.SendAsync(command);
 
@@ -39,15 +50,27 @@ public class EnvironmentVariablesController: ApiControllerBase
 
     
 
-    [HttpPatch]
-    public Task<IActionResult> Patch()
+    [HttpPatch("{id}")]
+    public async Task<IActionResult> Patch(int id, [FromBody] PatchUpdateEnvironmentReq req)
     {
-        throw new NotImplementedException();
+        var command = _mapper.Map<PatchUpdateEnvironmentCommand>(req);
+
+        command.Id = id;
+        
+        var result = await _mediatorHandler.SendAsync(command);
+        
+        ThrowIfCommandHasError();
+        return new ApiOkResult();
     }
 
-    [HttpDelete]
-    public Task<IActionResult> Delete()
+    [HttpDelete("{id}")]
+    public async Task<IActionResult> Delete(int id)
     {
-        throw new NotImplementedException();
+        var command = new DeleteEnvironmentCommand(id);
+
+        var result = await _mediatorHandler.SendAsync(command);
+        
+        ThrowIfCommandHasError();
+        return new ApiOkResult();
     }
 }

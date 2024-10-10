@@ -1,24 +1,24 @@
-﻿using MonoModularNet.Infrastructure.DAL.Context;
-using MonoModularNet.Module.System.Domain.GetListConfiguration;
+﻿using AutoMapper.QueryableExtensions;
+using Microsoft.EntityFrameworkCore;
 using MonoModularNet.Module.System.Domain.Model;
-using MonoModularNet.Module.System.Shared.Interface.Repository;
 
 namespace MonoModularNet.Module.System.Domain.GetListEnvironment;
 
-public class GetListEnvironmentVariableQueryHandler: CqrsQueryHandler<GetListEnvironmentVariableQuery, IReadOnlyList<ConfigurationRes>>
+public class GetListEnvironmentVariableQueryHandler: CqrsQueryHandler<GetListEnvironmentVariableQuery, IReadOnlyList<EnvironmentListItemRes>>
 {
-    private readonly ISystemConfigurationRepo _systemConfigurationRepo;
-    private readonly ApplicationDbContext Context;
+    private readonly IEntityRepository<SystemEnvironment, int> _systemEnvironmentRepo;
+    private readonly IMapper _mapper;
 
-    public GetListEnvironmentVariableQueryHandler(ISystemConfigurationRepo systemConfigurationRepo, ApplicationDbContext context)
+    public GetListEnvironmentVariableQueryHandler(IEntityRepository<SystemEnvironment, int> systemEnvironmentRepo, IMapper mapper)
     {
-        _systemConfigurationRepo = systemConfigurationRepo;
-        Context = context;
+        _systemEnvironmentRepo = systemEnvironmentRepo;
+        _mapper = mapper;
     }
 
-    public override async Task<IReadOnlyList<ConfigurationRes>> Handle(GetListEnvironmentVariableQuery request, CancellationToken cancellationToken)
+    public override async Task<IReadOnlyList<EnvironmentListItemRes>> Handle(GetListEnvironmentVariableQuery request, CancellationToken cancellationToken)
     {
-        var result = await _systemConfigurationRepo.GetListAsync(orderByColumn: request.OrderByColumn, orderBy: request.OrderBy);
+        var result = await _systemEnvironmentRepo.AsQueryable()
+            .ProjectTo<EnvironmentListItemRes>(_mapper.ConfigurationProvider).ToListAsync(cancellationToken: cancellationToken);
 
         return result;
     }

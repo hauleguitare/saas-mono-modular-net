@@ -1,8 +1,8 @@
 ﻿using MonoModularNet.Module.System.Domain.Model;
 
-namespace MonoModularNet.Module.System.Domain.GetListConfiguration;
+namespace MonoModularNet.Module.System.Domain.GetListEnvironment;
 
-public class GetListEnvironmentVariableQuery: CqrsQuery<IReadOnlyList<ConfigurationRes>>
+public class GetListEnvironmentVariableQuery: CqrsQuery<IReadOnlyList<EnvironmentListItemRes>>
 {
     public GetListEnvironmentVariableQuery(string? orderBy, string? orderByColumn)
     {

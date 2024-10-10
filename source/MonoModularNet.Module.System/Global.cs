@@ -11,3 +11,4 @@ global using Core.Entity.System;
 global using MonoModularNet.Infrastructure.DAL.Repository;
 global using MonoModularNet.Infrastructure.DAL.UnitOfWork;
 global using FluentValidation;
+global using Dapper;

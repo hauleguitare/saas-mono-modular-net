@@ -1,8 +1,6 @@
-﻿using FluentValidation;
+﻿namespace MonoModularNet.Module.System.Domain.CreateEnvironment;
 
-namespace MonoModularNet.Module.System.Domain.CreateEnvironmentVariable;
-
-public class CreateEnvironmentVariableCommandValidator: AbstractValidator<CreateEnvironmentVariableCommand>
+public class CreateEnvironmentVariableCommandValidator: AbstractValidator<CreateEnvironmentCommand>
 {
     private readonly string[] _type = new[]
     {

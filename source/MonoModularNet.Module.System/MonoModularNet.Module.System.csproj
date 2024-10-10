@@ -7,13 +7,15 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\MonoModularNet.Infrastructure.CQRS\MonoModularNet.Infrastructure.CQRS.csproj" />
-      <ProjectReference Include="..\MonoModularNet.Infrastructure.DAL\MonoModularNet.Infrastructure.DAL.csproj" />
-      <ProjectReference Include="..\MonoModularNet.Infrastructure.Shared\MonoModularNet.Infrastructure.Shared.csproj" />
+        <ProjectReference Include="..\MonoModularNet.Infrastructure.CQRS\MonoModularNet.Infrastructure.CQRS.csproj"/>
+        <ProjectReference Include="..\MonoModularNet.Infrastructure.DAL\MonoModularNet.Infrastructure.DAL.csproj"/>
+        <ProjectReference Include="..\MonoModularNet.Infrastructure.Shared\MonoModularNet.Infrastructure.Shared.csproj"/>
     </ItemGroup>
 
     <ItemGroup>
-      <Folder Include="Shared\Interface\" />
+        <Folder Include="Infrastructure\Repository\"/>
+        <Folder Include="Shared\Interface\"/>
+        <Folder Include="Shared\Interface\Repository\"/>
     </ItemGroup>
 
 </Project>

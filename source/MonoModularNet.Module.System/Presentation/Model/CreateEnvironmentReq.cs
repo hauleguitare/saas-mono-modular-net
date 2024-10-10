@@ -1,14 +1,14 @@
 ﻿namespace MonoModularNet.Module.System.Presentation.Model;
 
-public class CreateEnvironmentVariableReq
+public record CreateEnvironmentReq
 {
     public string Key { get; set; } = null!;
     public string? Value { get; set; }
 
-    public CreateEnvironmentVariableMetadataReq Metadata { get; set; } = new CreateEnvironmentVariableMetadataReq();
+    public CreateEnvironmentMetadataReq Metadata { get; set; } = new CreateEnvironmentMetadataReq();
 }
 
-public class CreateEnvironmentVariableMetadataReq
+public record CreateEnvironmentMetadataReq
 {
     public string Type { get; set; } = null!;
     public bool IsRequired { get; set; } = false;
