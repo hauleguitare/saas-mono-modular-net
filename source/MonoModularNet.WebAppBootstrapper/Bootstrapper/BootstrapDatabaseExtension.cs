@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
 using MonoModularNet.Infrastructure.DAL.Context;
 using MonoModularNet.Infrastructure.DAL.Hasher;
 using MonoModularNet.Infrastructure.DAL.Identity;
@@ -84,29 +85,15 @@ public static class BootstrapDatabaseExtension
 
         return services;
     }
-
-    /// <summary>
-    /// Add Entity Repository into services
-    /// </summary>
-    /// <param name="services"></param>
-    /// <param name="lifetime"></param>
-    /// <typeparam name="TContext"></typeparam>
-    /// <returns></returns>
-    private static IServiceCollection AddEntityRepository<TContext>(this IServiceCollection services,
-        ServiceLifetime lifetime = ServiceLifetime.Scoped) where TContext : DbContext
-    {
-        var repoType = typeof(IEntityRepository<,>);
-        return services;
-    }
     
     private static IServiceCollection AddBootstrapIdentity(this IServiceCollection services,
         IConfiguration configuration, IWebHostEnvironment environment)
     {
-        services.AddIdentityCore<ApplicationUser>(opts =>
+        services.AddIdentity<ApplicationUser, ApplicationRole>(opts =>
             {
             })
-            .AddRoles<ApplicationRole>()
-            .AddEntityFrameworkStores<ApplicationDbContext>();
+            .AddEntityFrameworkStores<ApplicationDbContext>()
+            .AddDefaultTokenProviders();
         
         return services;
     }

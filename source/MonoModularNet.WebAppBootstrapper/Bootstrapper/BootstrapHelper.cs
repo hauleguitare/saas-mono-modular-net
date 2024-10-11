@@ -19,7 +19,7 @@ public static class ApiBootstrapHelper
         services.AddEndpointsApiExplorer();
         services.AddSwaggerGen();
         
-        // Add Host Exception Middleware
+        // Add Host Event Middleware
         services.AddBootstrapMiddleware(configuration, environment);
         
         // Database
@@ -27,6 +27,9 @@ public static class ApiBootstrapHelper
         
         // Mediator
         services.AddBootstrapMediator(configuration, environment);
+        
+        // Add HTTP Context Accessor
+        services.AddHttpContextAccessor();
         
         // Hangfire
         services.AddBootstrapHangfire(configuration, environment);
