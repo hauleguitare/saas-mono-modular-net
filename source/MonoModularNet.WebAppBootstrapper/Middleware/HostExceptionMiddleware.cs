@@ -1,4 +1,5 @@
-﻿using FluentValidation;
+﻿using Core.Exception;
+using FluentValidation;
 using MonoModularNet.Infrastructure.Shared.Common.Controller;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
@@ -23,6 +24,20 @@ public class HostExceptionMiddleware: IMiddleware
             await next(context);
         }
 
+
+        catch (DomainException e)
+        {
+            var response = context.Response;
+            
+            if (!response.HasStarted)
+            {
+                response.ContentType = "application/json";
+                response.StatusCode = e.StatusCode;
+
+                await response.WriteAsync(Response(new {e.Errors, e.Messages}));
+            }
+        }
+
         catch (ValidationException e)
         {
             var result = HandleOnValidationException(e);
@@ -37,7 +52,7 @@ public class HostExceptionMiddleware: IMiddleware
             }
         }
         
-        // catch (Exception e)
+        // catch (Event e)
         // {
         //     var result = HandleOnException(e);
         //     var response = context.Response;
