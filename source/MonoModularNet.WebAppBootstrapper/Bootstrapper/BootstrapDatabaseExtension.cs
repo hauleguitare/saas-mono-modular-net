@@ -3,7 +3,6 @@ using Microsoft.EntityFrameworkCore;
 using MonoModularNet.Infrastructure.DAL.Context;
 using MonoModularNet.Infrastructure.DAL.Hasher;
 using MonoModularNet.Infrastructure.DAL.Identity;
-using MonoModularNet.Infrastructure.DAL.Repository;
 using MonoModularNet.Infrastructure.DAL.UnitOfWork;
 
 namespace MonoModularNet.WebAppBootstrapper.Bootstrapper;

@@ -1,5 +1,5 @@
 ﻿using AutoMapper;
-using Core.Entity.System;
+using MonoModularNet.Infrastructure.DAL.System;
 using MonoModularNet.Module.System.Domain.Model;
 
 namespace MonoModularNet.Module.System.Infrastructure.Mapper;

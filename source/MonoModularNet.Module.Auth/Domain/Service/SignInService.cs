@@ -5,6 +5,7 @@ using MonoModularNet.Infrastructure.Shared.Common.Attribute;
 using MonoModularNet.Module.Auth.Domain.Exception;
 using MonoModularNet.Module.Auth.Domain.Model;
 using MonoModularNet.Module.Auth.Shared.Interface;
+using MonoModularNet.Module.Shared.Common.Event;
 
 namespace MonoModularNet.Module.Auth.Domain.Service;
 
@@ -34,7 +35,7 @@ public class SignInService: ISignInService
         {
             await _mediatorHandler.RaiseExceptionAsync(new AuthSignedInAlreadyException(), cancellationToken);
         }
-
+        
         var result = await _signInManager.PasswordSignInAsync(req.Email, req.Password, true, true);
 
         if (!result.Succeeded)
@@ -45,6 +46,8 @@ public class SignInService: ISignInService
         var claimPrincipal = _httpContextAccessor.HttpContext?.User;
         var user = await _userManager.GetUserAsync(claimPrincipal!);
         var signInRes = _mapper.Map<SignInRes>(user);
+        
+        await _mediatorHandler.PublishAsync(new SystemNotificationEvent(user!.Id, $"Welcome back {user.UserName}", null), cancellationToken);
 
         return signInRes;
     }

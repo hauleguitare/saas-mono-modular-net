@@ -12,7 +12,10 @@ public static class ApiBootstrapHelper
         // Add services to the container.
         services.AddControllers();
         
-        // Add Authorization Ccore
+        // Add Authentication
+        services.AddBootstrapAuthentication(configuration, environment);
+        
+        // Add Authorization
         services.AddBootstrapAuthorization(configuration, environment);
 
         // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle

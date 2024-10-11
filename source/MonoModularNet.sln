@@ -37,6 +37,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MonoModularNet.Infrastructu
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MonoModularNet.Module.System", "MonoModularNet.Module.System\MonoModularNet.Module.System.csproj", "{BC8B9744-7F1C-4B99-A838-34AFC9FB8CFF}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MonoModularNet.Module.Shared", "MonoModularNet.Module.Shared\MonoModularNet.Module.Shared.csproj", "{5A650895-6954-4CC4-8E1B-141157B4CDE4}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -91,6 +93,10 @@ Global
 		{BC8B9744-7F1C-4B99-A838-34AFC9FB8CFF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BC8B9744-7F1C-4B99-A838-34AFC9FB8CFF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BC8B9744-7F1C-4B99-A838-34AFC9FB8CFF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5A650895-6954-4CC4-8E1B-141157B4CDE4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5A650895-6954-4CC4-8E1B-141157B4CDE4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5A650895-6954-4CC4-8E1B-141157B4CDE4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5A650895-6954-4CC4-8E1B-141157B4CDE4}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -107,5 +113,6 @@ Global
 		{F4FCBFD6-6471-45BE-9A84-81B53AD8E39D} = {23DC4EEF-2B7F-4BA3-8849-38D038C2BB3E}
 		{4B13A934-4478-4246-8DE2-1EBE9CAFB373} = {63F61CE7-2FD2-4A31-B160-43AFC2ED552D}
 		{BC8B9744-7F1C-4B99-A838-34AFC9FB8CFF} = {63F61CE7-2FD2-4A31-B160-43AFC2ED552D}
+		{5A650895-6954-4CC4-8E1B-141157B4CDE4} = {63F61CE7-2FD2-4A31-B160-43AFC2ED552D}
 	EndGlobalSection
 EndGlobal

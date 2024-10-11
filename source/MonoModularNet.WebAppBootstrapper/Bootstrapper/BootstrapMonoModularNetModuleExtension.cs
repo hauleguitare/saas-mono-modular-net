@@ -1,5 +1,4 @@
-﻿
-using MonoModularNet.Module.Auth.Infrastructure;
+﻿using MonoModularNet.Module.Auth.Infrastructure;
 using MonoModularNet.Module.System.Infrastructure;
 
 namespace MonoModularNet.WebAppBootstrapper.Bootstrapper;

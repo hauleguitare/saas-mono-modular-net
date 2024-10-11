@@ -1,6 +1,6 @@
-﻿using Core.Entity.System;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
+using MonoModularNet.Infrastructure.DAL.System;
 
 namespace MonoModularNet.Infrastructure.DAL.EntityConfiguration.System;
 

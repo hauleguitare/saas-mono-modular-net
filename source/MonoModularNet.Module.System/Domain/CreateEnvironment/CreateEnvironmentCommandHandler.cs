@@ -1,4 +1,6 @@
-﻿namespace MonoModularNet.Module.System.Domain.CreateEnvironment;
+﻿using MonoModularNet.Infrastructure.DAL.System;
+
+namespace MonoModularNet.Module.System.Domain.CreateEnvironment;
 
 public class CreateEnvironmentCommandHandler: CqrsCommandHandler<CreateEnvironmentCommand>
 {

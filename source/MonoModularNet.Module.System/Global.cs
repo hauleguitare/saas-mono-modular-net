@@ -7,7 +7,6 @@ global using MonoModularNet.Infrastructure.CQRS.Response;
 global using MonoModularNet.Infrastructure.CQRS.Query;
 global using Microsoft.AspNetCore.Identity;
 global using AutoMapper;
-global using Core.Entity.System;
 global using MonoModularNet.Infrastructure.DAL.Repository;
 global using MonoModularNet.Infrastructure.DAL.UnitOfWork;
 global using FluentValidation;

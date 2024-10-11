@@ -1,6 +1,7 @@
 ﻿using Core.Common.Entity;
+using Core.Entity;
 
-namespace Core.Entity.System;
+namespace MonoModularNet.Infrastructure.DAL.System;
 
 public class SystemEnvironment: BaseEntity<int>, IAggregateRoot
 {

@@ -1,6 +1,6 @@
 ﻿using Core.Common.Entity;
 
-namespace Core.Entity.System;
+namespace MonoModularNet.Infrastructure.DAL.System;
 
 public class SystemEnvironmentMetadata: ValueObject
 {

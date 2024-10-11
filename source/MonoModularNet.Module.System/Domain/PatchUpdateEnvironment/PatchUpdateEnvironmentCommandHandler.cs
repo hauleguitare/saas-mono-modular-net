@@ -1,4 +1,6 @@
-﻿namespace MonoModularNet.Module.System.Domain.PatchUpdateEnvironment;
+﻿using MonoModularNet.Infrastructure.DAL.System;
+
+namespace MonoModularNet.Module.System.Domain.PatchUpdateEnvironment;
 
 public class PatchUpdateEnvironmentCommandHandler: CqrsCommandHandler<PatchUpdateEnvironmentCommand>
 {
