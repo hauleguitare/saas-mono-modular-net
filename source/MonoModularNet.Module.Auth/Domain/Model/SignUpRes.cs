@@ -1,7 +1,7 @@
 ﻿namespace MonoModularNet.Module.Auth.Domain.Model;
 
-public record SignInRes
+public record SignUpRes
 {
-    public string Id { get; set; }
+    public string Email { get; set; }
     public string UserName { get; set; }
 }

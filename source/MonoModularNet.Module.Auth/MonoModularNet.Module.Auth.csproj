@@ -12,8 +12,4 @@
         <ProjectReference Include="..\MonoModularNet.Infrastructure.MailToolKit\MonoModularNet.Infrastructure.MailToolKit.csproj"/>
     </ItemGroup>
 
-    <ItemGroup>
-        <Folder Include="Domain\Handler\"/>
-    </ItemGroup>
-
 </Project>
