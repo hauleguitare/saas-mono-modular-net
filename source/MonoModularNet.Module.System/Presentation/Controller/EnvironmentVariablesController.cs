@@ -44,7 +44,7 @@ public class EnvironmentVariablesController: ApiControllerBase
         
         var result = await _mediatorHandler.SendAsync(command);
 
-        ThrowIfCommandHasError();
+        ThrowIfHasError();
         return new ApiOkResult();
     }
 
@@ -59,7 +59,7 @@ public class EnvironmentVariablesController: ApiControllerBase
         
         var result = await _mediatorHandler.SendAsync(command);
         
-        ThrowIfCommandHasError();
+        ThrowIfHasError();
         return new ApiOkResult();
     }
 
@@ -70,7 +70,7 @@ public class EnvironmentVariablesController: ApiControllerBase
 
         var result = await _mediatorHandler.SendAsync(command);
         
-        ThrowIfCommandHasError();
+        ThrowIfHasError();
         return new ApiOkResult();
     }
 }

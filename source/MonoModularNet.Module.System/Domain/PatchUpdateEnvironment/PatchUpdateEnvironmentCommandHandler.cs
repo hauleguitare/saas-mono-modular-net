@@ -1,6 +1,4 @@
-﻿using Core.Exception.System;
-
-namespace MonoModularNet.Module.System.Domain.PatchUpdateEnvironment;
+﻿namespace MonoModularNet.Module.System.Domain.PatchUpdateEnvironment;
 
 public class PatchUpdateEnvironmentCommandHandler: CqrsCommandHandler<PatchUpdateEnvironmentCommand>
 {
@@ -21,7 +19,7 @@ public class PatchUpdateEnvironmentCommandHandler: CqrsCommandHandler<PatchUpdat
 
         if (record is null)
         {
-            throw new SystemEnvironmentNotFound(null, null);
+            // throw new SystemEnvironmentNotFound(null, null);
         }
 
         _mapper.Map(request, record);
