@@ -1,23 +1,16 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+﻿using Core.Exception;
+using Microsoft.Extensions.DependencyInjection;
 using MonoModularNet.Infrastructure.Shared.Common.Attribute;
 
 namespace MonoModularNet.Infrastructure.Shared.Common.Notification;
 
-public class DomainExceptionMessage
-{
-    public Guid Id { get; set; }
-    public string[]? Errors { get; set; }
-    public string[]? Messages { get; set; }
-}
-
-
 public interface IDomainExceptionMessageEventQueue : IDisposable
 {
-    void Enqueue(DomainExceptionMessage domainExceptionMessage);
+    void Enqueue(DomainException domainException);
 
     bool HasException();
 
-    DomainExceptionMessage Dequeue();
+    DomainException Dequeue();
 
     void Clear();
 }
@@ -25,14 +18,14 @@ public interface IDomainExceptionMessageEventQueue : IDisposable
 [Injectable(InterfaceType = typeof(IDomainExceptionMessageEventQueue), Lifetime = ServiceLifetime.Scoped)]
 public class DomainExceptionMessageEventQueue: IDomainExceptionMessageEventQueue
 {
-    private readonly Queue<DomainExceptionMessage> _exceptionQueue = new Queue<DomainExceptionMessage>();
+    private readonly Queue<DomainException> _exceptionQueue = new Queue<DomainException>();
     
     public void Dispose()
     {
         GC.SuppressFinalize(this);
     }
 
-    public void Enqueue(DomainExceptionMessage domainExceptionMessage)
+    public void Enqueue(DomainException domainExceptionMessage)
     {
         _exceptionQueue.Enqueue(domainExceptionMessage);
     }
@@ -42,7 +35,7 @@ public class DomainExceptionMessageEventQueue: IDomainExceptionMessageEventQueue
         return _exceptionQueue.Count > 0;
     }
 
-    public DomainExceptionMessage Dequeue()
+    public DomainException Dequeue()
     {
         return _exceptionQueue.Dequeue();
     }

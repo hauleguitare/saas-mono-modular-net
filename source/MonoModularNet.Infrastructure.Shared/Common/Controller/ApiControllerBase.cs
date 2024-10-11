@@ -14,17 +14,24 @@ public abstract class ApiControllerBase: ControllerBase
         _eventQueue = eventQueue;
     }
 
+
+    [NonAction]
+    protected ApiOkResult ApiOk(Object? obj = null)
+    {
+        return new ApiOkResult(obj);
+    }
+
     [NonAction]
     protected StringValues GetContentLanguage() => HttpContext.Request.Headers.ContentLanguage;
     
     [NonAction]
-    protected void ThrowIfCommandHasError()
+    protected void ThrowIfHasError()
     {
         if (_eventQueue.HasException())
         {
-            var queue = _eventQueue.Dequeue();
+            var domainException = _eventQueue.Dequeue();
 
-            throw new Exception("Exception from queue");
+            throw domainException;
         }
     }
 }
