@@ -40,7 +40,7 @@ public class CqrsResult<TResponse>: ICqrsResult
     public string[]? Messages { get; set; }
     public bool IsSuccess { get; set; } = false;
     
-    public static CqrsResult<TResponse> Success(TResponse response)
+    public static CqrsResult<TResponse> Success(TResponse? response)
     {
         return new CqrsResult<TResponse>()
         {
@@ -49,11 +49,13 @@ public class CqrsResult<TResponse>: ICqrsResult
         };
     }
     
-    public static CqrsResult Failure()
+    public static CqrsResult<TResponse> Failure(string[]? errors, string[]? messages)
     {
-        return new CqrsResult()
+        return new CqrsResult<TResponse>()
         {
             IsSuccess = false,
+            Errors = errors,
+            Messages = messages
         };
     }
 }

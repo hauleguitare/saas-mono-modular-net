@@ -15,12 +15,7 @@ public class DomainExceptionEventHandler: INotificationHandler<DomainExceptionEv
 
     public Task Handle(DomainExceptionEvent notification, CancellationToken cancellationToken)
     {
-        _queue.Enqueue(new DomainExceptionMessage()
-        {
-            Id = Guid.NewGuid(),
-            Errors = notification.Errors,
-            Messages = notification.Messages
-        });
+        _queue.Enqueue(notification.Exception);
         
         return Task.CompletedTask;
     }

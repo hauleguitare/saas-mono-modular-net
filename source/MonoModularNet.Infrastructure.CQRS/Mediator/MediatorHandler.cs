@@ -1,4 +1,6 @@
-﻿using MediatR;
+﻿using Core.Exception;
+using MediatR;
+using MonoModularNet.Infrastructure.CQRS.Event;
 
 namespace MonoModularNet.Infrastructure.CQRS.Mediator;
 
@@ -24,6 +26,11 @@ public class MediatorHandler: IMediatorHandler
     public Task PublishAsync(INotification @event, CancellationToken cancellationToken = default)
     {
         return _mediator.Publish(@event, cancellationToken);
+    }
+
+    public Task RaiseExceptionAsync(DomainException exception, CancellationToken cancellationToken = default)
+    {
+        return _mediator.Publish(new DomainExceptionEvent(exception));
     }
 
     public IAsyncEnumerable<TResponse> CreateStream<TResponse>(IStreamRequest<TResponse> request, CancellationToken cancellationToken = default) where TResponse :  class, new()

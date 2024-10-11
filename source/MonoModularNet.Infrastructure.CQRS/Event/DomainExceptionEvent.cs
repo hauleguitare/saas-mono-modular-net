@@ -5,18 +5,10 @@ namespace MonoModularNet.Infrastructure.CQRS.Event;
 
 public class DomainExceptionEvent: DomainEvent, INotification
 {
-    public string[]? Errors { get; set; }
-    public string[]? Messages { get; set; }
-    
-    public DomainException? Exception { get; set; }
-
-    public static DomainExceptionEvent CreateExceptionDomainEvent(string[]? errors, string[]? messages, DomainException? exception)
+    public DomainExceptionEvent(DomainException exception)
     {
-        return new DomainExceptionEvent()
-        {
-            Errors = errors,
-            Messages = messages,
-            Exception = exception
-        };
+        Exception = exception;
     }
+
+    public DomainException Exception { get; set; }
 }

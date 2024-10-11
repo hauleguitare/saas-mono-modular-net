@@ -25,8 +25,8 @@ where TException : DomainException
     public Task Handle(TRequest request, TException exception, RequestExceptionHandlerState<TResponse> state,
         CancellationToken cancellationToken)
     {
-        _mediatorHandler.PublishAsync(
-            DomainExceptionEvent.CreateExceptionDomainEvent(null, null, exception), cancellationToken);
+        // _mediatorHandler.PublishAsync(
+        //     DomainExceptionEvent.CreateExceptionDomainEvent(null, null, exception), cancellationToken);
         
         state.SetHandled(new TResponse()
         {
