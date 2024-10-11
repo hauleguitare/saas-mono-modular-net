@@ -12,9 +12,12 @@ public class DomainException: global::System.Exception, IDomainException
     
     public string[]? Errors { get; set; }
     public string[]? Messages { get; set; }
+    
+    public int StatusCode { get; set; }
 
-    public DomainException(string[]? errors, string[]? messages)
+    public DomainException(int statusCode, string[]? errors, string[]? messages)
     {
+        StatusCode = statusCode;
         Errors = errors;
         Messages = messages;
     }
